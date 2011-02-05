@@ -28,6 +28,8 @@
 
 #define IPHONE_HEIGHT 480
 #define IPHONE_WIDTH 320
+#define IPAD_HEIGHT 1024
+#define IPAD_WIDTH 768
 
 #define MAXIMUM_FRAME_RATE 45
 #define MINIMUM_FRAME_RATE 15
@@ -182,14 +184,26 @@
     // Override point for customization after application launch.
 
     gameStates = [[NSMutableDictionary alloc] init];
-    glTestView = [[gsTest alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
-    [gameStates setObject:glTestView forKey:@"glTest"];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        glTestView = [[gsTest alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT) andManager:self];
+        [gameStates setObject:glTestView forKey:@"glTest"];
 
-    mainMenu = [[gsMainMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
-    [gameStates setObject:mainMenu forKey:@"MainMenu"];
+        mainMenu = [[gsMainMenu alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT) andManager:self];
+        [gameStates setObject:mainMenu forKey:@"MainMenu"];
 
-    menu = [[gsMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
-    [gameStates setObject:menu forKey:@"menu"];
+        menu = [[gsMenu alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT) andManager:self];
+        [gameStates setObject:menu forKey:@"menu"];
+    } else {
+        glTestView = [[gsTest alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
+        [gameStates setObject:glTestView forKey:@"glTest"];
+
+        mainMenu = [[gsMainMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
+        [gameStates setObject:mainMenu forKey:@"MainMenu"];
+
+        menu = [[gsMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
+        [gameStates setObject:menu forKey:@"menu"];
+    }
+
 
     animating = FALSE;
     displayLinkSupported = FALSE;
@@ -203,7 +217,7 @@
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         displayLinkSupported = TRUE;
-    reqSysVer = @"4.0";
+    reqSysVer = @"3.2";
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         rotationSupported = TRUE;
 

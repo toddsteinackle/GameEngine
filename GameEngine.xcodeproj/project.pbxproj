@@ -59,6 +59,9 @@
 		5FD96F1312FA053600FF881E /* gsMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD96F1212FA053600FF881E /* gsMainMenu.m */; };
 		5FE99B6F12FDC44100F60AA4 /* gsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99B6D12FDC44100F60AA4 /* gsMenu.m */; };
 		5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */; };
+		5FE99BAA12FDC9DF00F60AA4 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */; };
+		5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */; };
+		5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +147,9 @@
 		5FE99B6C12FDC44100F60AA4 /* gsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gsMenu.h; sourceTree = "<group>"; };
 		5FE99B6D12FDC44100F60AA4 /* gsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gsMenu.m; sourceTree = "<group>"; };
 		5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = gsMenu.xib; sourceTree = "<group>"; };
+		5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsmainmenu-iPad.xib"; sourceTree = "<group>"; };
+		5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsMenu-iPad.xib"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* GameEngine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GameEngine-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +200,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				5FE99BA812FDC9DE00F60AA4 /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -281,6 +288,8 @@
 		5FA9B91E12FC765500306D2D /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */,
+				5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */,
 				5FE99B6C12FDC44100F60AA4 /* gsMenu.h */,
 				5FE99B6D12FDC44100F60AA4 /* gsMenu.m */,
 				5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */,
@@ -320,6 +329,14 @@
 				5F5A9F9312F5FD04006A2A2C /* GLESGameState.m */,
 			);
 			name = Framework;
+			sourceTree = "<group>";
+		};
+		5FE99BA812FDC9DE00F60AA4 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +406,9 @@
 				5FA9BA9E12FCA44C00306D2D /* portalEmitter.xml in Resources */,
 				5FA9BAB112FCA5C500306D2D /* texture.png in Resources */,
 				5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */,
+				5FE99BAA12FDC9DF00F60AA4 /* MainWindow-iPad.xib in Resources */,
+				5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */,
+				5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -440,6 +461,8 @@
 				GCC_PREFIX_HEADER = GameEngine_Prefix.pch;
 				INFOPLIST_FILE = "GameEngine-Info.plist";
 				PRODUCT_NAME = GameEngine;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -447,11 +470,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GameEngine_Prefix.pch;
 				INFOPLIST_FILE = "GameEngine-Info.plist";
 				PRODUCT_NAME = GameEngine;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
