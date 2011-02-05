@@ -29,9 +29,6 @@
 // If audio is currently playing this method returns YES
 - (BOOL)isExternalAudioPlaying;
 
-// Checks for any OpenAL error that may have been set
-- (void)checkForErrors;
-
 @end
 
 
@@ -106,6 +103,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 
 		// Grab a reference to the AVAudioSession singleton
 		audioSession = [AVAudioSession sharedInstance];
+        [audioSession setDelegate:self];
 		soundCategory = AVAudioSessionCategoryAmbient;
 		[audioSession setCategory:soundCategory error:&audioSessionError];
 
@@ -164,23 +162,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 
     // If the key is not found log it and finish
     if(numVal != nil) {
-        //NSLog(@"WARNING - SoundManager: Sound key '%@' already exists.", aSoundKey);
+        NSLog(@"WARNING - SoundManager: Sound key '%@' not found.", aSoundKey);
         return;
     }
 
 	// Set up the bufferID that will hold the OpenAL buffer generated
     NSUInteger bufferID;
 
+#ifdef OPENAL_DEBUG
 	alError = AL_NO_ERROR;
+#endif
 
 	// Generate a buffer within OpenAL for this sound
 	alGenBuffers(1, &bufferID);
 
+#ifdef OPENAL_DEBUG
 	// Check to make sure no errors occurred.
 	if((alError = alGetError()) != AL_NO_ERROR) {
 		NSLog(@"ERROR - SoundManager: Error generating OpenAL buffer with error %x for filename %@\n", alError, aMusicFile);
 
 	}
+#endif
 
     // Set up the variables which are going to be used to hold the format
     // size and frequency of the sound file we are loading along with the actual sound data
@@ -203,10 +205,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 		// Use the static buffer data API
 		alBufferData(bufferID, format, data, size, frequency);
 
+#ifdef OPENAL_DEBUG
 		if((alError = alGetError()) != AL_NO_ERROR) {
 			NSLog(@"ERROR - SoundManager: Error attaching audio to buffer: %x\n", alError);
 		}
-
+#endif
 		// Free the memory we used when getting the audio data
 		free(data);
 	} else {
@@ -218,24 +221,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 
 	// Place the buffer ID into the sound library against |aSoundKey|
 	[soundLibrary setObject:[NSNumber numberWithUnsignedInt:bufferID] forKey:aSoundKey];
-    //NSLog(@"INFO - SoundManager: Loaded sound with key '%@' into buffer '%d'", aSoundKey, bufferID);
+#ifdef OPENAL_DEBUG
+    NSLog(@"INFO - SoundManager: Loaded sound with key '%@' into buffer '%d'", aSoundKey, bufferID);
+#endif
 }
 
 - (void)removeSoundWithKey:(NSString*)aSoundKey {
 
+#ifdef OPENAL_DEBUG
 	// Reset errors in OpenAL
 	alError = alGetError();
 	alError = AL_NO_ERROR;
+#endif
 
     // Find the buffer which has been linked to the sound key provided
     NSNumber *numVal = [soundLibrary objectForKey:aSoundKey];
 
     // If the key is not found log it and finish
     if(numVal == nil) {
-        //NSLog(@"WARNING - SoundManager: No sound with key '%@' was found so cannot be removed", aSoundKey);
+        NSLog(@"WARNING - SoundManager: No sound with key '%@' was found so cannot be removed", aSoundKey);
         return;
     }
-
     // Get the buffer number from
     NSUInteger bufferID = [numVal unsignedIntValue];
 	NSInteger bufferForSource;
@@ -258,17 +264,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 
 	// Delete the buffer
 	alDeleteBuffers(1, &bufferID);
-
+#ifdef OPENAL_DEBUG
 	// Check for any errors
 	if((alError = alGetError()) != AL_NO_ERROR) {
 		NSLog(@"ERROR - SoundManager: Could not delete buffer %d with error %x", bufferID, alError);
 		exit(1);
 	}
-
+#endif
 	// Remove the soundkey from the soundLibrary
     [soundLibrary removeObjectForKey:aSoundKey];
-
-    //NSLog(@"INFO - SoundManager: Removed sound with key '%@'", aSoundKey);
+#ifdef OPENAL_DEBUG
+    NSLog(@"INFO - SoundManager: Removed sound with key '%@'", aSoundKey);
+#endif
 }
 
 
@@ -294,7 +301,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 	}
 
 	[musicLibrary setObject:path forKey:aMusicKey];
-   // NSLog(@"INFO - SoundManager: Loaded background music with key '%@'", aMusicKey);
+#ifdef OPENAL_DEBUG
+    NSLog(@"INFO - SoundManager: Loaded background music with key '%@'", aMusicKey);
+#endif
 }
 
 - (void)removeMusicWithKey:(NSString*)aMusicKey {
@@ -304,7 +313,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
         return;
     }
     [musicLibrary removeObjectForKey:aMusicKey];
+#ifdef OPENAL_DEBUG
     NSLog(@"INFO - SoundManager: Removed music with key '%@'", aMusicKey);
+#endif
 }
 
 - (void)addToPlaylistNamed:(NSString*)aPlaylistName track:(NSString*)aTrackName {
@@ -403,9 +414,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 }
 
 - (NSUInteger)playSoundWithKey:(NSString*)aSoundKey gain:(float)aGain pitch:(float)aPitch location:(CGPoint)aLocation shouldLoop:(BOOL)aLoop {
-
+#ifdef OPENAL_DEBUG
 	alError = alGetError(); // clear the error code
-
+#endif
 	// Find the buffer linked to the key which has been passed in
 	NSNumber *numVal = [soundLibrary objectForKey:aSoundKey];
 	if(numVal == nil) return 0;
@@ -414,13 +425,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 	// Find the next available source
     NSUInteger sourceID;
     sourceID = [self nextAvailableSource];
-
+#ifdef OPENAL_DEBUG
 	// If 0 is returned then no sound sources were available
 	if (sourceID == 0) {
 		NSLog(@"WARNING - SoundManager: No sound sources available to play %@", aSoundKey);
 		return 0;
 	}
-
+#endif
 	// Make sure that the source is clean by resetting the buffer assigned to the source
 	// to 0
 	alSourcei(sourceID, AL_BUFFER, 0);
@@ -444,25 +455,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 
 	// Now play the sound
 	alSourcePlay(sourceID);
-
+#ifdef OPENAL_DEBUG
     // Check to see if there were any errors
 	alError = alGetError();
 	if(alError != 0) {
 		NSLog(@"ERROR - SoundManager: %d", alError);
 		return 0;
 	}
-
+#endif
 	// Return the source ID so that loops can be stopped etc
 	return sourceID;
 }
 
 
 - (void)stopSoundWithKey:(NSString*)aSoundKey {
-
+#ifdef OPENAL_DEBUG
 	// Reset errors in OpenAL
 	alError = alGetError();
 	alError = AL_NO_ERROR;
-
+#endif
     // Find the buffer which has been linked to the sound key provided
     NSNumber *numVal = [soundLibrary objectForKey:aSoundKey];
 
@@ -488,10 +499,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 			alSourcei(currentSourceID, AL_BUFFER, 0);
 		}
 	}
-
+#ifdef OPENAL_DEBUG
 	// Check for any errors
 	if((alError = alGetError()) != AL_NO_ERROR)
 		NSLog(@"ERROR - SoundManager: Could not stop sound with key '%@' got error %x", aSoundKey, alError);
+#endif
 }
 
 
@@ -654,8 +666,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 @implementation SoundManager (Private)
 
 - (BOOL)initOpenAL {
+#ifdef OPENAL_DEBUG
     NSLog(@"INFO - Sound Manager: Initializing sound manager");
-
+#endif
 	// Define how many OpenAL sources should be generated
 	uint maxOpenALSources = 16;
 
@@ -698,8 +711,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 		alListenerfv(AL_POSITION, listener_pos);
 		alListenerfv(AL_ORIENTATION, listener_ori);
 		alListenerfv(AL_VELOCITY, listener_vel);
-
+#ifdef OPENAL_DEBUG
         NSLog(@"INFO - Sound Manager: Finished initializing the sound manager");
+#endif
 		// Return YES as we have successfully initialized OpenAL
 		return YES;
 	}
@@ -732,8 +746,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
     OSStatus result;
 
     if(aState) {
+#ifdef OPENAL_DEBUG
         NSLog(@"INFO - SoundManager: OpenAL Active");
-
+#endif
         // Set the AudioSession AudioCategory to what has been defined in soundCategory
 		[audioSession setCategory:soundCategory error:&audioSessionError];
         if(audioSessionError) {
@@ -755,8 +770,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
         // As we are finishing the interruption we need to bind back to our context.
         alcMakeContextCurrent(context);
     } else {
+#ifdef OPENAL_DEBUG
         NSLog(@"INFO - SoundManager: OpenAL Inactive");
-
+#endif
         // As we are being interrupted we set the current context to NULL.  If this sound manager is to be
         // compaitble with firmware prior to 3.0 then the context would need to also be destroyed and
         // then re-created when the interruption ended.
@@ -791,13 +807,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 	// If music is currently playing then set its volume
 	if(isMusicPlaying) {
 		[musicPlayer setVolume:currentMusicVolume];
-	}
-}
-
-- (void)checkForErrors {
-	alError = alGetError();
-	if(alError != AL_NO_ERROR) {
-		NSLog(@"ERROR - SoundManager: OpenAL reported error '%d'", alError);
 	}
 }
 
