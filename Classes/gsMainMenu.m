@@ -22,4 +22,8 @@
 	[Manager doStateChange:@"glTest"];
 }
 
+- (IBAction) doMenuTest {
+    [Manager doStateChange:@"menu"];
+}
+
 @end

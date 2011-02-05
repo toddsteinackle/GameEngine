@@ -10,5 +10,6 @@
 }
 
 - (IBAction) doGraphicsTest;
+- (IBAction) doMenuTest;
 
 @end

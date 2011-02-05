@@ -12,6 +12,7 @@
 @class GameEngineViewController;
 @class gsTest;
 @class gsMainMenu;
+@class gsMenu;
 
 @interface GameEngineAppDelegate : GameStateManager <UIApplicationDelegate> {
     UIWindow *window;
@@ -25,6 +26,7 @@
 
     gsTest *glTestView;
     gsMainMenu *mainMenu;
+    gsMenu *menu;
 
     NSMutableDictionary *gameStates;
     BOOL rotationSupported;

@@ -57,6 +57,8 @@
 		5FA9BAB112FCA5C500306D2D /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BAB012FCA5C500306D2D /* texture.png */; };
 		5FD96F0E12FA051A00FF881E /* gsmainmenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */; };
 		5FD96F1312FA053600FF881E /* gsMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD96F1212FA053600FF881E /* gsMainMenu.m */; };
+		5FE99B6F12FDC44100F60AA4 /* gsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99B6D12FDC44100F60AA4 /* gsMenu.m */; };
+		5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +141,9 @@
 		5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = gsmainmenu.xib; path = Classes/gsmainmenu.xib; sourceTree = "<group>"; };
 		5FD96F1112FA053600FF881E /* gsMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gsMainMenu.h; path = Classes/gsMainMenu.h; sourceTree = "<group>"; };
 		5FD96F1212FA053600FF881E /* gsMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gsMainMenu.m; path = Classes/gsMainMenu.m; sourceTree = "<group>"; };
+		5FE99B6C12FDC44100F60AA4 /* gsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gsMenu.h; sourceTree = "<group>"; };
+		5FE99B6D12FDC44100F60AA4 /* gsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gsMenu.m; sourceTree = "<group>"; };
+		5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = gsMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* GameEngine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GameEngine-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,6 +281,9 @@
 		5FA9B91E12FC765500306D2D /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				5FE99B6C12FDC44100F60AA4 /* gsMenu.h */,
+				5FE99B6D12FDC44100F60AA4 /* gsMenu.m */,
+				5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */,
 				5FA9BAB012FCA5C500306D2D /* texture.png */,
 				5FA9BA9312FCA44C00306D2D /* appearingEmitter.xml */,
 				5FA9BA9412FCA44C00306D2D /* emitterConfig.xml */,
@@ -380,6 +388,7 @@
 				5FA9BA9D12FCA44C00306D2D /* franklin16.png in Resources */,
 				5FA9BA9E12FCA44C00306D2D /* portalEmitter.xml in Resources */,
 				5FA9BAB112FCA5C500306D2D /* texture.png in Resources */,
+				5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +422,7 @@
 				5F5AA17C12F660E8006A2A2C /* TBXML.m in Sources */,
 				5F5AA17D12F660E8006A2A2C /* TBXMLParticleAdditions.m in Sources */,
 				5FD96F1312FA053600FF881E /* gsMainMenu.m in Sources */,
+				5FE99B6F12FDC44100F60AA4 /* gsMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

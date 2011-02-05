@@ -13,6 +13,7 @@
 
 #import "gsTest.h"
 #import "gsMainMenu.h"
+#import "gsMenu.h"
 
 @implementation GameEngineAppDelegate
 
@@ -186,6 +187,9 @@
 
     mainMenu = [[gsMainMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
     [gameStates setObject:mainMenu forKey:@"MainMenu"];
+
+    menu = [[gsMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
+    [gameStates setObject:menu forKey:@"menu"];
 
     animating = FALSE;
     displayLinkSupported = FALSE;
