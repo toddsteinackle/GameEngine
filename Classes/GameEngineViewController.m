@@ -7,10 +7,9 @@
 //
 
 #import "GameEngineViewController.h"
+#import "GameEngineAppDelegate.h"
 
 @implementation GameEngineViewController
-
-
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -23,11 +22,11 @@
 }
 */
 
-/*
+
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
 }
-*/
+
 
 
 /*
@@ -38,18 +37,23 @@
 */
 
 
-/*
+
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    GameEngineAppDelegate *appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (appDelegate.rotationSupported) {
+        return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+        //return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    }
+    return NO;
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 

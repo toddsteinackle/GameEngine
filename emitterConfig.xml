@@ -1,0 +1,23 @@
+<particleEmitterConfig>
+	<texture name="texture.png" type="png"/>
+	<sourcePosition x="0" y="0"/>
+	<sourcePositionVariance x="7" y="7"/>
+	<speed value="600"/>
+	<speedVariance value="10"/>
+	<particleLifeSpan value="4"/>
+	<particleLifespanVariance value="2"/>
+	<angle value="90"/>
+	<angleVariance value="8"/>
+	<gravity x="0" y="-500"/>
+	<startColor red="0.0" green="0.0" blue="0.0" alpha="0.0"/>
+	<startColorVariance red="1.0" green="1.0" blue="1.0" alpha="1.0"/>
+	<finishColor red="0.0" green="0.0" blue="0.0" alpha="1.0"/>
+	<finishColorVariance red="1.0" green="1.0" blue="1.0" alpha="1.0"/>
+	<maxParticles value="500"/>
+	<startParticleSize value="30"/>
+	<startParticleSizeVariance value="5"/>
+	<finishParticleSize value="0"/>
+	<finishParticleSizeVariance value="15"/>
+	<duration value="-1"/>
+	<blendAdditive value="1"/>
+</particleEmitterConfig>
