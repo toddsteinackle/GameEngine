@@ -256,6 +256,8 @@
 -(void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
 	UITouch* touch = [touches anyObject];
+    CGPoint loc = [touch locationInView:self];
+    NSLog(@"x -- %f y -- %f", loc.x, loc.y);
 	NSUInteger numTaps = [touch tapCount];
 	if( numTaps > 1 ) {
 		[Manager doStateChange:@"MainMenu"];

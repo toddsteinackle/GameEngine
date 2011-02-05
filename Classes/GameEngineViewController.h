@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface GameEngineViewController : UIViewController {
+@interface GameEngineViewController : UIViewController <GKLeaderboardViewControllerDelegate> {
 
 }
+
+- (void) showLeaderboard;
+- (void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
 
 @end
 

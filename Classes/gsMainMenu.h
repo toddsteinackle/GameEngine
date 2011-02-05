@@ -11,5 +11,6 @@
 
 - (IBAction) doGraphicsTest;
 - (IBAction) doMenuTest;
+- (IBAction) doLeaderboardTest;
 
 @end

@@ -11,6 +11,22 @@
 
 @implementation GameEngineViewController
 
+- (void) showLeaderboard {
+
+    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+
+    if (leaderboardController != nil) {
+        leaderboardController.leaderboardDelegate = self;
+        [self presentModalViewController: leaderboardController animated: YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
+
+    [self dismissModalViewControllerAnimated:YES];
+
+}
+
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

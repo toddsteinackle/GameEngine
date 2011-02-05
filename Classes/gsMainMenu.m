@@ -2,6 +2,8 @@
 //  gsMainMenu.m
 
 #import "gsMainMenu.h"
+#import "GameEngineAppDelegate.h"
+#import "GameEngineViewController.h"
 
 @implementation gsMainMenu
 
@@ -29,6 +31,11 @@
 
 - (IBAction) doMenuTest {
     [Manager doStateChange:@"menu"];
+}
+
+- (IBAction) doLeaderboardTest {
+    GameEngineAppDelegate *appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.viewController showLeaderboard];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <GameKit/GameKit.h>
 #import "GameEngineAppDelegate.h"
 #import "GameEngineViewController.h"
 #import "GameState.h"
@@ -14,6 +15,18 @@
 #import "gsTest.h"
 #import "gsMainMenu.h"
 #import "gsMenu.h"
+
+BOOL isGameCenterAvailable()
+{
+    // Check for presence of GKLocalPlayer API.
+    Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
+    // The device must be running running iOS 4.1 or later.
+    NSString *reqSysVer = @"4.1";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    BOOL osVersionSupported = ([currSysVer compare:reqSysVer
+                                           options:NSNumericSearch] != NSOrderedAscending);
+    return (gcClass && osVersionSupported);
+}
 
 @implementation GameEngineAppDelegate
 
@@ -224,6 +237,22 @@
     [self doStateChange:@"MainMenu"];
 
     [self startAnimation];
+#ifdef GAMECENTER
+    if (isGameCenterAvailable()) {
+    #ifdef GAMECENTER_DEBUG
+            NSLog(@"Game Center Available");
+    #endif
+        //self.gameCenterAvailable = TRUE;
+        [self authenticateLocalPlayer];
+        [self registerForAuthenticationNotification];
+    } else {
+    #ifdef GAMECENTER_DEBUG
+            NSLog(@"Game Center Not Available");
+    #endif
+        //self.gameCenterAvailable = FALSE;
+    }
+#endif
+
     return YES;
 }
 
@@ -279,6 +308,55 @@
     [self stopAnimation];
 }
 
+#pragma mark -
+#pragma mark Game Center
+
+- (void) authenticateLocalPlayer
+{
+    [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+        if (error == nil)
+        {
+            // Insert code here to handle a successful authentication.
+#ifdef GAMECENTER_DEBUG
+            NSLog(@"player authenticated -- initial");
+#endif
+        }
+
+        else
+        {
+            // Your application can process the error parameter to report the error to the player.
+#ifdef GAMECENTER_DEBUG
+            NSLog(@"GC authenticateWithCompletionHandler error");
+#endif
+        }
+    }];
+}
+
+- (void) registerForAuthenticationNotification
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver: self
+           selector:@selector(authenticationChanged)
+               name:GKPlayerAuthenticationDidChangeNotificationName
+             object:nil];
+}
+
+- (void) authenticationChanged
+{
+    if ([GKLocalPlayer localPlayer].isAuthenticated) {
+        // Insert code here to handle a successful authentication.
+#ifdef GAMECENTER_DEBUG
+        NSLog(@"player authenticated -- authenticationChanged");
+#endif
+        //[self loadAndReportGKScores];
+    } else {
+#ifdef GAMECENTER_DEBUG
+        NSLog(@"authenticationChanged player not authenticated");
+#endif
+        // Insert code here to clean up any outstanding Game Center-related classes.
+    }
+
+}
 
 #pragma mark -
 #pragma mark Memory management

@@ -62,6 +62,7 @@
 		5FE99BAA12FDC9DF00F60AA4 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */; };
 		5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */; };
 		5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */; };
+		5FE99C0E12FDD48300F60AA4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE99C0D12FDD48300F60AA4 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsmainmenu-iPad.xib"; sourceTree = "<group>"; };
 		5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsMenu-iPad.xib"; sourceTree = "<group>"; };
+		5FE99C0D12FDD48300F60AA4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* GameEngine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GameEngine-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +170,7 @@
 				5F5AA19B12F66211006A2A2C /* libz.dylib in Frameworks */,
 				5F5AA1A312F66251006A2A2C /* AVFoundation.framework in Frameworks */,
 				5F5AA1AB12F6627C006A2A2C /* AudioToolbox.framework in Frameworks */,
+				5FE99C0E12FDD48300F60AA4 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +242,7 @@
 				5F5AA19A12F66211006A2A2C /* libz.dylib */,
 				5F5AA1A212F66251006A2A2C /* AVFoundation.framework */,
 				5F5AA1AA12F6627C006A2A2C /* AudioToolbox.framework */,
+				5FE99C0D12FDD48300F60AA4 /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

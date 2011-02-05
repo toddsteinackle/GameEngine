@@ -55,6 +55,9 @@
 - (void) stopAnimation;
 - (void) gameLoop;
 - (void) renderCurrentScene;
+- (void) authenticateLocalPlayer;
+- (void) registerForAuthenticationNotification;
+- (void) authenticationChanged;
 
 @end
 
