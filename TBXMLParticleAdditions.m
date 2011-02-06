@@ -6,6 +6,16 @@
 
 @implementation TBXML (TBXMLParticleAdditions)
 
+- (float)intValueFromChildElementNamed:(NSString*)aName parentElement:(TBXMLElement*)aParentXMLElement {
+	TBXMLElement * xmlElement = [TBXML childElementNamed:aName parentElement:aParentXMLElement];
+
+	if (xmlElement) {
+		return [[TBXML valueOfAttributeNamed:@"value" forElement:xmlElement] intValue];
+	}
+
+	return 0;
+}
+
 - (float)floatValueFromChildElementNamed:(NSString*)aName parentElement:(TBXMLElement*)aParentXMLElement {
 	TBXMLElement * xmlElement = [TBXML childElementNamed:aName parentElement:aParentXMLElement];
 

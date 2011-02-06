@@ -33,8 +33,6 @@
 	float scaleAmount;
 
     ParticleEmitter *pe;
-	BitmapFont *bmf;
-	NSString *emitterType;
 
 }
 

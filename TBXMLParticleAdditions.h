@@ -18,6 +18,9 @@
 //
 @interface TBXML (TBXMLParticleAdditions)
 
+// Returns a int value from the processes element
+- (float) intValueFromChildElementNamed:(NSString*)aName parentElement:(TBXMLElement*)aParentXMLElement;
+
 // Returns a float value from the processes element
 - (float) floatValueFromChildElementNamed:(NSString*)aName parentElement:(TBXMLElement*)aParentXMLElement;
 

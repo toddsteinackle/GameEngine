@@ -15,7 +15,7 @@
 
 -(gsTest*) initWithFrame:(CGRect)frame andManager:(GameStateManager*)pManager
 {
-    sceneState = 2;
+    sceneState = 3;
 	if (self = [super initWithFrame:frame andManager:pManager]){
 		//do initialization here.
         switch (sceneState) {
@@ -133,24 +133,8 @@
                 // Grab an instance of the render manager
                 sharedImageRenderManager = [ImageRenderManager sharedImageRenderManager];
 
-                // Particle fountain configuration
-                pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"emitterConfig.xml"];
-                emitterType = @"Particle Fountain";
-                pe.sourcePosition = Vector2fMake(160, 25);
+                pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"emitter.pex"];
 
-
-                // Appearing emitter configuration
-//                		pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"appearingEmitter.xml"];
-//                		emitterType = @"Appearing Emitter";
-//                		pe.sourcePosition = Vector2fMake(160, 240);
-//
-//                		// Portal emitter configuration
-//                		pe = [[ParticleEmitter alloc] initParticleEmitterWithFile:@"portalEmitter.xml"];
-//                		emitterType = @"Portal";
-//                		pe.sourcePosition = Vector2fMake(160, 240);
-
-                // Set up the bitmap font
-                bmf = [[BitmapFont alloc] initWithFontImageNamed:@"franklin16.png" controlFile:@"franklin16" scale:Scale2fMake(1.5, 1.5) filter:GL_LINEAR];
                 break;
 
 
@@ -194,8 +178,6 @@
             // Render the particles
             [pe renderParticles];
 
-            // Render our text on the screen
-            [bmf renderStringJustifiedInFrame:CGRectMake(0, 400, 320, 30) justification:BitmapFontJustification_MiddleCentered text:emitterType];
             [sharedImageRenderManager renderImages];
             break;
 

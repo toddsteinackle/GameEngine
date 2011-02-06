@@ -2,9 +2,10 @@
 //  ParticleEmitter.m
 
 #import "ParticleEmitter.h"
-#import "Image.h"
 #import "TBXML.h"
 #import "TBXMLParticleAdditions.h"
+#import "Texture2D.h"
+#import "NSDataAdditions.h"
 
 #pragma mark -
 #pragma mark Private interface
@@ -97,30 +98,56 @@
 		// Get the particle for the current particle index
 		Particle *currentParticle = &particles[particleIndex];
 
+        // FIX 1
+        // Reduce the life span of the particle
+        currentParticle->timeToLive -= aDelta;
+
 		// If the current particle is alive then update it
 		if(currentParticle->timeToLive > 0) {
 
 			// If maxRadius is greater than 0 then the particles are going to spin otherwise
 			// they are effected by speed and gravity
-			if (maxRadius > 0) {
+			if (emitterType == kParticleTypeRadial) {
+
+                // FIX 2
+                // Update the angle of the particle from the sourcePosition and the radius.  This is only
+				// done of the particles are rotating
+				currentParticle->angle += currentParticle->degreesPerSecond * aDelta;
+				currentParticle->radius -= currentParticle->radiusDelta;
+
 				Vector2f tmp;
 				tmp.x = sourcePosition.x - cosf(currentParticle->angle) * currentParticle->radius;
 				tmp.y = sourcePosition.y - sinf(currentParticle->angle) * currentParticle->radius;
 				currentParticle->position = tmp;
 
-				// Update the angle of the particle from the sourcePosition and the radius.  This is only
-				// done of the particles are rotating
-				currentParticle->angle += currentParticle->degreesPerSecond * aDelta;
-				currentParticle->radius -= currentParticle->radiusDelta;
 				if (currentParticle->radius < minRadius)
 					currentParticle->timeToLive = 0;
 			} else {
-				// Calculate the new position of the particle based on the particles
-				// current direction and gravity
-				Vector2f tmp = Vector2fMultiply(gravity, aDelta);
+				Vector2f tmp, radial, tangential;
+
+                radial = Vector2fZero;
+                Vector2f diff = Vector2fSub(currentParticle->startPos, Vector2fZero);
+
+                currentParticle->position = Vector2fSub(currentParticle->position, diff);
+
+                if (currentParticle->position.x || currentParticle->position.y)
+                    radial = Vector2fNormalize(currentParticle->position);
+
+                tangential.x = radial.x;
+                tangential.y = radial.y;
+                radial = Vector2fMultiply(radial, currentParticle->radialAcceleration);
+
+                GLfloat newy = tangential.x;
+                tangential.x = -tangential.y;
+                tangential.y = newy;
+                tangential = Vector2fMultiply(tangential, currentParticle->tangentialAcceleration);
+
+				tmp = Vector2fAdd( Vector2fAdd(radial, tangential), gravity);
+                tmp = Vector2fMultiply(tmp, aDelta);
 				currentParticle->direction = Vector2fAdd(currentParticle->direction, tmp);
 				tmp = Vector2fMultiply(currentParticle->direction, aDelta);
 				currentParticle->position = Vector2fAdd(currentParticle->position, tmp);
+                currentParticle->position = Vector2fAdd(currentParticle->position, diff);
 			}
 
 			// Update the particles color
@@ -128,9 +155,6 @@
 			currentParticle->color.green += currentParticle->deltaColor.green;
 			currentParticle->color.blue += currentParticle->deltaColor.blue;
 			currentParticle->color.alpha += currentParticle->deltaColor.alpha;
-
-			// Reduce the life span of the particle
-			currentParticle->timeToLive -= aDelta;
 
 			// Place the position of the current particle into the vertices array
 			vertices[particleIndex].x = currentParticle->position.x;
@@ -179,7 +203,7 @@
 	glColorPointer(4,GL_FLOAT,sizeof(PointSprite),(GLvoid*) (sizeof(GLfloat)*3));
 
 	// Bind to the particles texture
-	glBindTexture(GL_TEXTURE_2D, texture.textureName);
+	glBindTexture(GL_TEXTURE_2D, texture.name);
 
 	// Enable the point size array
 	glEnableClientState(GL_POINT_SIZE_ARRAY_OES);
@@ -190,9 +214,9 @@
 	glPointSizePointerOES(GL_FLOAT,sizeof(PointSprite),(GLvoid*) (sizeof(GL_FLOAT)*2));
 
 	// Change the blend function used if blendAdditive has been set
-	if(blendAdditive) {
-		glBlendFunc(GL_ONE_MINUS_SRC_ALPHA, GL_ONE);
-	}
+
+    // Set the blend function based on the configuration
+    glBlendFunc(blendFuncSource, blendFuncDestination);
 
 	// Enable and configure point sprites which we are going to use for our particles
 	glEnable(GL_POINT_SPRITE_OES);
@@ -210,9 +234,7 @@
 	glDisableClientState(GL_POINT_SIZE_ARRAY_OES);
 	glDisable(GL_POINT_SPRITE_OES);
 
-	if(blendAdditive) {
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Re-enable the texture coordinates as we use them elsewhere in the game and it is expected that
 	// its on
@@ -251,6 +273,8 @@
 	// and negative
 	particle->position.x = sourcePosition.x + sourcePositionVariance.x * RANDOM_MINUS_1_TO_1();
 	particle->position.y = sourcePosition.y + sourcePositionVariance.y * RANDOM_MINUS_1_TO_1();
+    particle->startPos.x = sourcePosition.x;
+    particle->startPos.y = sourcePosition.y;
 
 	// Init the direction of the particle.  The newAngle is calculated using the angle passed in and the
 	// angle variance.
@@ -271,6 +295,9 @@
 	particle->radiusDelta = (maxRadius / particleLifespan) * (1.0 / MAXIMUM_UPDATE_RATE);
 	particle->angle = DEGREES_TO_RADIANS(angle + angleVariance * RANDOM_MINUS_1_TO_1());
 	particle->degreesPerSecond = DEGREES_TO_RADIANS(rotatePerSecond + rotatePerSecondVariance * RANDOM_MINUS_1_TO_1());
+
+    particle->radialAcceleration = radialAcceleration;
+    particle->tangentialAcceleration = tangentialAcceleration;
 
 	// Calculate the particles life span using the life span and variance passed in
 	particle->timeToLive = MAX(0, particleLifespan + particleLifespanVariance * RANDOM_MINUS_1_TO_1());
@@ -322,15 +349,23 @@
 	TBXMLElement *element = [TBXML childElementNamed:@"texture" parentElement:rootXMLElement];
 	if (element) {
 		NSString *fileName = [TBXML valueOfAttributeNamed:@"name" forElement:element];
+        NSString *fileData = [TBXML valueOfAttributeNamed:@"data" forElement:element];
 
-		if (fileName) {
-			// Create a new texture which is going to be used as the texture for the point sprites
-			texture = [[Image alloc] initWithImageNamed:fileName filter:GL_LINEAR];
+		if (fileName && !fileData) {
+			// Create a new texture which is going to be used as the texture for the point sprites. As there is
+            // no texture data in the file, this is done using an external image file
+			texture = [[Texture2D alloc] initWithImage:[UIImage imageNamed:fileName] filter:GL_LINEAR];
 		}
+
+        // If texture data is present in the file then create the texture image from that data rather than an external file
+        if (fileData) {
+            texture = [[Texture2D alloc] initWithImage:[UIImage imageWithData:[[NSData dataWithBase64EncodedString:fileData] gzipInflate]] filter:GL_LINEAR];
+        }
 	}
 
 	// Load all of the values from the XML file into the particle emitter.  The functions below are using the
 	// TBXMLAdditions category.  This adds convenience methods to TBXML to help cut down on the code in this method.
+    emitterType = [aConfig intValueFromChildElementNamed:@"emitterType" parentElement:rootXMLElement];
 	sourcePosition = [aConfig vector2fFromChildElementNamed:@"sourcePosition" parentElement:rootXMLElement];
 	sourcePositionVariance = [aConfig vector2fFromChildElementNamed:@"sourcePositionVariance" parentElement:rootXMLElement];
 	speed = [aConfig floatValueFromChildElementNamed:@"speed" parentElement:rootXMLElement];
@@ -340,6 +375,8 @@
 	angle = [aConfig floatValueFromChildElementNamed:@"angle" parentElement:rootXMLElement];
 	angleVariance = [aConfig floatValueFromChildElementNamed:@"angleVariance" parentElement:rootXMLElement];
 	gravity = [aConfig vector2fFromChildElementNamed:@"gravity" parentElement:rootXMLElement];
+    radialAcceleration = [aConfig floatValueFromChildElementNamed:@"radialAcceleration" parentElement:rootXMLElement];
+    tangentialAcceleration = [aConfig floatValueFromChildElementNamed:@"tangentialAcceleration" parentElement:rootXMLElement];
 	startColor = [aConfig color4fFromChildElementNamed:@"startColor" parentElement:rootXMLElement];
 	startColorVariance = [aConfig color4fFromChildElementNamed:@"startColorVariance" parentElement:rootXMLElement];
 	finishColor = [aConfig color4fFromChildElementNamed:@"finishColor" parentElement:rootXMLElement];
@@ -350,7 +387,8 @@
 	finishParticleSize = [aConfig floatValueFromChildElementNamed:@"finishParticleSize" parentElement:rootXMLElement];
 	finishParticleSizeVariance = [aConfig floatValueFromChildElementNamed:@"finishParticleSizeVariance" parentElement:rootXMLElement];
 	duration = [aConfig floatValueFromChildElementNamed:@"duration" parentElement:rootXMLElement];
-	blendAdditive = [aConfig boolValueFromChildElementNamed:@"blendAdditive" parentElement:rootXMLElement];
+	blendFuncSource = [aConfig intValueFromChildElementNamed:@"blendFuncSource" parentElement:rootXMLElement];
+    blendFuncDestination = [aConfig intValueFromChildElementNamed:@"blendFuncDestination" parentElement:rootXMLElement];
 
 	// These paramters are used when you want to have the particles spinning around the source location
 	maxRadius = [aConfig floatValueFromChildElementNamed:@"maxRadius" parentElement:rootXMLElement];

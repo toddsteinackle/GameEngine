@@ -3,8 +3,13 @@
 
 #import "Global.h"
 
-@class GameController;
-@class Image;
+@class Texture2D;
+
+// Particle type
+enum kParticleTypes {
+	kParticleTypeGravity,
+	kParticleTypeRadial
+};
 
 // Structure that holds the location and size for each point sprite
 typedef struct {
@@ -18,8 +23,11 @@ typedef struct {
 typedef struct {
 	Vector2f position;
 	Vector2f direction;
+    Vector2f startPos;
 	Color4f color;
 	Color4f deltaColor;
+    GLfloat radialAcceleration;
+    GLfloat tangentialAcceleration;
 	GLfloat radius;
 	GLfloat radiusDelta;
 	GLfloat angle;
@@ -29,7 +37,7 @@ typedef struct {
 	GLfloat timeToLive;
 } Particle;
 
-#define MAXIMUM_UPDATE_RATE 30.0f	// The maximum number of updates that occur per frame
+#define MAXIMUM_UPDATE_RATE 90.0f	// The maximum number of updates that occur per frame
 
 // The particleEmitter allows you to define parameters that are used when generating particles.
 // These particles are OpenGL particle sprites that based on the parameters provided each have
@@ -42,14 +50,14 @@ typedef struct {
 //
 @interface ParticleEmitter : NSObject {
 
-	/////////////////// Singleton Managers
-	GameController *sharedGameController;
-
 	/////////////////// Particle iVars
-	Image *texture;
+    int emitterType;
+	Texture2D *texture;
 	Vector2f sourcePosition, sourcePositionVariance;
 	GLfloat angle, angleVariance;
 	GLfloat speed, speedVariance;
+    GLfloat radialAcceleration, tangentialAcceleration;
+    GLfloat radialAccelVariance, tangentialAccelVariance;
 	Vector2f gravity;
 	GLfloat particleLifespan, particleLifespanVariance;
 	Color4f startColor, startColorVariance;
@@ -62,7 +70,8 @@ typedef struct {
 	GLfloat emitCounter;
 	GLfloat elapsedTime;
 	GLfloat duration;
-	BOOL blendAdditive;						// Should the OpenGL Blendmode be additive
+
+	int blendFuncSource, blendFuncDestination;
 
 	//////////////////// Particle ivars only used when a maxRadius value is provided.  These values are used for
 	//////////////////// the special purpose of creating the spinning portal emitter

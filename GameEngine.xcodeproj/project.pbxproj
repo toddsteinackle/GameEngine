@@ -48,13 +48,6 @@
 		5FA9BA4F12FC9EFF00306D2D /* player_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4912FC9EFF00306D2D /* player_spritesheet.png */; };
 		5FA9BA5012FC9EFF00306D2D /* testFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4A12FC9EFF00306D2D /* testFont.fnt */; };
 		5FA9BA5112FC9EFF00306D2D /* testFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4B12FC9EFF00306D2D /* testFont.png */; };
-		5FA9BA9912FCA44C00306D2D /* appearingEmitter.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA9312FCA44C00306D2D /* appearingEmitter.xml */; };
-		5FA9BA9A12FCA44C00306D2D /* emitterConfig.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA9412FCA44C00306D2D /* emitterConfig.xml */; };
-		5FA9BA9B12FCA44C00306D2D /* fireEmitter.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA9512FCA44C00306D2D /* fireEmitter.xml */; };
-		5FA9BA9C12FCA44C00306D2D /* franklin16.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA9612FCA44C00306D2D /* franklin16.fnt */; };
-		5FA9BA9D12FCA44C00306D2D /* franklin16.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA9712FCA44C00306D2D /* franklin16.png */; };
-		5FA9BA9E12FCA44C00306D2D /* portalEmitter.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA9812FCA44C00306D2D /* portalEmitter.xml */; };
-		5FA9BAB112FCA5C500306D2D /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BAB012FCA5C500306D2D /* texture.png */; };
 		5FD96F0E12FA051A00FF881E /* gsmainmenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */; };
 		5FD96F1312FA053600FF881E /* gsMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD96F1212FA053600FF881E /* gsMainMenu.m */; };
 		5FE99B6F12FDC44100F60AA4 /* gsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99B6D12FDC44100F60AA4 /* gsMenu.m */; };
@@ -63,6 +56,7 @@
 		5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */; };
 		5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */; };
 		5FE99C0E12FDD48300F60AA4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE99C0D12FDD48300F60AA4 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5FE99D3512FE214900F60AA4 /* emitter.pex in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99D3412FE214900F60AA4 /* emitter.pex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,13 +129,6 @@
 		5FA9BA4912FC9EFF00306D2D /* player_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_spritesheet.png; sourceTree = "<group>"; };
 		5FA9BA4A12FC9EFF00306D2D /* testFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testFont.fnt; sourceTree = "<group>"; };
 		5FA9BA4B12FC9EFF00306D2D /* testFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testFont.png; sourceTree = "<group>"; };
-		5FA9BA9312FCA44C00306D2D /* appearingEmitter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appearingEmitter.xml; sourceTree = "<group>"; };
-		5FA9BA9412FCA44C00306D2D /* emitterConfig.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = emitterConfig.xml; sourceTree = "<group>"; };
-		5FA9BA9512FCA44C00306D2D /* fireEmitter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = fireEmitter.xml; sourceTree = "<group>"; };
-		5FA9BA9612FCA44C00306D2D /* franklin16.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = franklin16.fnt; sourceTree = "<group>"; };
-		5FA9BA9712FCA44C00306D2D /* franklin16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = franklin16.png; sourceTree = "<group>"; };
-		5FA9BA9812FCA44C00306D2D /* portalEmitter.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = portalEmitter.xml; sourceTree = "<group>"; };
-		5FA9BAB012FCA5C500306D2D /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
 		5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = gsmainmenu.xib; path = Classes/gsmainmenu.xib; sourceTree = "<group>"; };
 		5FD96F1112FA053600FF881E /* gsMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gsMainMenu.h; path = Classes/gsMainMenu.h; sourceTree = "<group>"; };
 		5FD96F1212FA053600FF881E /* gsMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gsMainMenu.m; path = Classes/gsMainMenu.m; sourceTree = "<group>"; };
@@ -152,6 +139,7 @@
 		5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsmainmenu-iPad.xib"; sourceTree = "<group>"; };
 		5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsMenu-iPad.xib"; sourceTree = "<group>"; };
 		5FE99C0D12FDD48300F60AA4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		5FE99D3412FE214900F60AA4 /* emitter.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emitter.pex; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* GameEngine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GameEngine-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,18 +280,12 @@
 		5FA9B91E12FC765500306D2D /* TestData */ = {
 			isa = PBXGroup;
 			children = (
+				5FE99D3412FE214900F60AA4 /* emitter.pex */,
 				5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */,
 				5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */,
 				5FE99B6C12FDC44100F60AA4 /* gsMenu.h */,
 				5FE99B6D12FDC44100F60AA4 /* gsMenu.m */,
 				5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */,
-				5FA9BAB012FCA5C500306D2D /* texture.png */,
-				5FA9BA9312FCA44C00306D2D /* appearingEmitter.xml */,
-				5FA9BA9412FCA44C00306D2D /* emitterConfig.xml */,
-				5FA9BA9512FCA44C00306D2D /* fireEmitter.xml */,
-				5FA9BA9612FCA44C00306D2D /* franklin16.fnt */,
-				5FA9BA9712FCA44C00306D2D /* franklin16.png */,
-				5FA9BA9812FCA44C00306D2D /* portalEmitter.xml */,
 				5FA9BA4612FC9EFF00306D2D /* atlas.png */,
 				5FA9BA4712FC9EFF00306D2D /* coordinates.plist */,
 				5FA9BA4812FC9EFF00306D2D /* ghost_spritesheet.png */,
@@ -402,17 +384,11 @@
 				5FA9BA4F12FC9EFF00306D2D /* player_spritesheet.png in Resources */,
 				5FA9BA5012FC9EFF00306D2D /* testFont.fnt in Resources */,
 				5FA9BA5112FC9EFF00306D2D /* testFont.png in Resources */,
-				5FA9BA9912FCA44C00306D2D /* appearingEmitter.xml in Resources */,
-				5FA9BA9A12FCA44C00306D2D /* emitterConfig.xml in Resources */,
-				5FA9BA9B12FCA44C00306D2D /* fireEmitter.xml in Resources */,
-				5FA9BA9C12FCA44C00306D2D /* franklin16.fnt in Resources */,
-				5FA9BA9D12FCA44C00306D2D /* franklin16.png in Resources */,
-				5FA9BA9E12FCA44C00306D2D /* portalEmitter.xml in Resources */,
-				5FA9BAB112FCA5C500306D2D /* texture.png in Resources */,
 				5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */,
 				5FE99BAA12FDC9DF00F60AA4 /* MainWindow-iPad.xib in Resources */,
 				5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */,
 				5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */,
+				5FE99D3512FE214900F60AA4 /* emitter.pex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
