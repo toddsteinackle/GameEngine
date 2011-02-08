@@ -7,19 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* GameEngineAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* GameEngineAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		2899E5220DE3E06400AC0155 /* GameEngineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* GameEngineViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		28D7ACF80DDB3853001CB0EB /* GameEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* GameEngineViewController.m */; };
+		5F3D40AC12FF416C00358CE7 /* GameEngineAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40A212FF416C00358CE7 /* GameEngineAppDelegate.m */; };
+		5F3D40AD12FF416C00358CE7 /* GameEngineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40A412FF416C00358CE7 /* GameEngineViewController.m */; };
+		5F3D40AE12FF416C00358CE7 /* GLESGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40A612FF416C00358CE7 /* GLESGameState.m */; };
+		5F3D40AF12FF416C00358CE7 /* MainMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40A812FF416C00358CE7 /* MainMenuView.m */; };
+		5F3D40B012FF416C00358CE7 /* MainMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D40A912FF416C00358CE7 /* MainMenuView.xib */; };
+		5F3D40B112FF416C00358CE7 /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40AB12FF416C00358CE7 /* GLView.m */; };
+		5F3D40C312FF436900358CE7 /* SettingsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40C112FF436900358CE7 /* SettingsMenuViewController.m */; };
+		5F3D40C412FF436900358CE7 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D40C212FF436900358CE7 /* SettingsMenuViewController.xib */; };
+		5F3D410B12FF4B3000358CE7 /* OpenGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D410A12FF4B3000358CE7 /* OpenGLViewController.m */; };
+		5F5715001300E07400D31399 /* SettingsMenuViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */; };
 		5F5A9EC612F5DEB9006A2A2C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9EC512F5DEB9006A2A2C /* GameState.m */; };
-		5F5A9ECB12F5DED0006A2A2C /* GameStateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9ECA12F5DED0006A2A2C /* GameStateManager.m */; };
-		5F5A9F0212F5E71D006A2A2C /* gsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9F0112F5E71D006A2A2C /* gsTest.m */; };
 		5F5A9F2A12F5ECD7006A2A2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5A9F2912F5ECD7006A2A2C /* QuartzCore.framework */; };
-		5F5A9F9412F5FD04006A2A2C /* GLESGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9F9312F5FD04006A2A2C /* GLESGameState.m */; };
 		5F5A9FA212F5FF6B006A2A2C /* ES1Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9FA012F5FF6B006A2A2C /* ES1Renderer.m */; };
 		5F5A9FB512F60090006A2A2C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5A9FB412F60090006A2A2C /* OpenGLES.framework */; };
 		5F5A9FCC12F6014C006A2A2C /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9FC212F6014C006A2A2C /* Image.m */; };
@@ -48,39 +53,42 @@
 		5FA9BA4F12FC9EFF00306D2D /* player_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4912FC9EFF00306D2D /* player_spritesheet.png */; };
 		5FA9BA5012FC9EFF00306D2D /* testFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4A12FC9EFF00306D2D /* testFont.fnt */; };
 		5FA9BA5112FC9EFF00306D2D /* testFont.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4B12FC9EFF00306D2D /* testFont.png */; };
-		5FD96F0E12FA051A00FF881E /* gsmainmenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */; };
-		5FD96F1312FA053600FF881E /* gsMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD96F1212FA053600FF881E /* gsMainMenu.m */; };
-		5FE99B6F12FDC44100F60AA4 /* gsMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FE99B6D12FDC44100F60AA4 /* gsMenu.m */; };
-		5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */; };
 		5FE99BAA12FDC9DF00F60AA4 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */; };
-		5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */; };
-		5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */; };
+		5FE99BC012FDCBB800F60AA4 /* MainMenuView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99BBE12FDCBB800F60AA4 /* MainMenuView-iPad.xib */; };
 		5FE99C0E12FDD48300F60AA4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE99C0D12FDD48300F60AA4 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5FE99D3512FE214900F60AA4 /* emitter.pex in Resources */ = {isa = PBXBuildFile; fileRef = 5FE99D3412FE214900F60AA4 /* emitter.pex */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* GameEngineAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* GameEngineAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* GameEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* GameEngineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameEngineViewController.xib; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		28D7ACF60DDB3853001CB0EB /* GameEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineViewController.h; sourceTree = "<group>"; };
-		28D7ACF70DDB3853001CB0EB /* GameEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* GameEngine_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngine_Prefix.pch; sourceTree = "<group>"; };
-		5F5A9EC412F5DEB9006A2A2C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameState.h; path = ../GameState.h; sourceTree = "<group>"; };
-		5F5A9EC512F5DEB9006A2A2C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameState.m; path = ../GameState.m; sourceTree = "<group>"; };
-		5F5A9EC912F5DED0006A2A2C /* GameStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStateManager.h; path = ../GameStateManager.h; sourceTree = "<group>"; };
-		5F5A9ECA12F5DED0006A2A2C /* GameStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameStateManager.m; path = ../GameStateManager.m; sourceTree = "<group>"; };
-		5F5A9F0012F5E71D006A2A2C /* gsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gsTest.h; path = Classes/gsTest.h; sourceTree = "<group>"; };
-		5F5A9F0112F5E71D006A2A2C /* gsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gsTest.m; path = Classes/gsTest.m; sourceTree = "<group>"; };
+		5F3D40A112FF416C00358CE7 /* GameEngineAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineAppDelegate.h; sourceTree = "<group>"; };
+		5F3D40A212FF416C00358CE7 /* GameEngineAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineAppDelegate.m; sourceTree = "<group>"; };
+		5F3D40A312FF416C00358CE7 /* GameEngineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineViewController.h; sourceTree = "<group>"; };
+		5F3D40A412FF416C00358CE7 /* GameEngineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineViewController.m; sourceTree = "<group>"; };
+		5F3D40A512FF416C00358CE7 /* GLESGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESGameState.h; sourceTree = "<group>"; };
+		5F3D40A612FF416C00358CE7 /* GLESGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLESGameState.m; sourceTree = "<group>"; };
+		5F3D40A712FF416C00358CE7 /* MainMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuView.h; sourceTree = "<group>"; };
+		5F3D40A812FF416C00358CE7 /* MainMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuView.m; sourceTree = "<group>"; };
+		5F3D40A912FF416C00358CE7 /* MainMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuView.xib; sourceTree = "<group>"; };
+		5F3D40AA12FF416C00358CE7 /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
+		5F3D40AB12FF416C00358CE7 /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
+		5F3D40C012FF436900358CE7 /* SettingsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenuViewController.h; sourceTree = "<group>"; };
+		5F3D40C112FF436900358CE7 /* SettingsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenuViewController.m; sourceTree = "<group>"; };
+		5F3D40C212FF436900358CE7 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
+		5F3D410912FF4B3000358CE7 /* OpenGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLViewController.h; sourceTree = "<group>"; };
+		5F3D410A12FF4B3000358CE7 /* OpenGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLViewController.m; sourceTree = "<group>"; };
+		5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsMenuViewController-iPad.xib"; sourceTree = "<group>"; };
+		5F5715231300E44500D31399 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		5F5A9EC412F5DEB9006A2A2C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		5F5A9EC512F5DEB9006A2A2C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		5F5A9F2912F5ECD7006A2A2C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		5F5A9F9212F5FD04006A2A2C /* GLESGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESGameState.h; sourceTree = "<group>"; };
-		5F5A9F9312F5FD04006A2A2C /* GLESGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLESGameState.m; sourceTree = "<group>"; };
 		5F5A9F9F12F5FF6B006A2A2C /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
 		5F5A9FA012F5FF6B006A2A2C /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
 		5F5A9FA112F5FF6B006A2A2C /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESRenderer.h; sourceTree = "<group>"; };
@@ -129,15 +137,8 @@
 		5FA9BA4912FC9EFF00306D2D /* player_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_spritesheet.png; sourceTree = "<group>"; };
 		5FA9BA4A12FC9EFF00306D2D /* testFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testFont.fnt; sourceTree = "<group>"; };
 		5FA9BA4B12FC9EFF00306D2D /* testFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testFont.png; sourceTree = "<group>"; };
-		5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = gsmainmenu.xib; path = Classes/gsmainmenu.xib; sourceTree = "<group>"; };
-		5FD96F1112FA053600FF881E /* gsMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gsMainMenu.h; path = Classes/gsMainMenu.h; sourceTree = "<group>"; };
-		5FD96F1212FA053600FF881E /* gsMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gsMainMenu.m; path = Classes/gsMainMenu.m; sourceTree = "<group>"; };
-		5FE99B6C12FDC44100F60AA4 /* gsMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gsMenu.h; sourceTree = "<group>"; };
-		5FE99B6D12FDC44100F60AA4 /* gsMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gsMenu.m; sourceTree = "<group>"; };
-		5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = gsMenu.xib; sourceTree = "<group>"; };
 		5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsmainmenu-iPad.xib"; sourceTree = "<group>"; };
-		5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "gsMenu-iPad.xib"; sourceTree = "<group>"; };
+		5FE99BBE12FDCBB800F60AA4 /* MainMenuView-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainMenuView-iPad.xib"; sourceTree = "<group>"; };
 		5FE99C0D12FDD48300F60AA4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5FE99D3412FE214900F60AA4 /* emitter.pex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = emitter.pex; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* GameEngine-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GameEngine-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -165,16 +166,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				5FA9B97912FC7D6700306D2D /* Framework */,
-				1D3623240D0F684500981E51 /* GameEngineAppDelegate.h */,
-				1D3623250D0F684500981E51 /* GameEngineAppDelegate.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +177,19 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5F5715231300E44500D31399 /* Globals.h */,
+				5F3D410912FF4B3000358CE7 /* OpenGLViewController.h */,
+				5F3D410A12FF4B3000358CE7 /* OpenGLViewController.m */,
+				5F3D40A112FF416C00358CE7 /* GameEngineAppDelegate.h */,
+				5F3D40A212FF416C00358CE7 /* GameEngineAppDelegate.m */,
+				5F3D40A312FF416C00358CE7 /* GameEngineViewController.h */,
+				5F3D40A412FF416C00358CE7 /* GameEngineViewController.m */,
+				5F3D40AA12FF416C00358CE7 /* GLView.h */,
+				5F3D40AB12FF416C00358CE7 /* GLView.m */,
 				5FA9B91E12FC765500306D2D /* TestData */,
+				5F3D40B712FF423700358CE7 /* Menus */,
+				5F3D40B212FF41E100358CE7 /* Framework */,
 				5FA9B91D12FC760F00306D2D /* GameEngine */,
-				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				5FE99BA812FDC9DE00F60AA4 /* Resources-iPad */,
@@ -211,6 +212,8 @@
 			isa = PBXGroup;
 			children = (
 				2899E5210DE3E06400AC0155 /* GameEngineViewController.xib */,
+				5F3D40C212FF436900358CE7 /* SettingsMenuViewController.xib */,
+				5F3D40A912FF416C00358CE7 /* MainMenuView.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* GameEngine-Info.plist */,
 			);
@@ -233,6 +236,28 @@
 				5FE99C0D12FDD48300F60AA4 /* GameKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5F3D40B212FF41E100358CE7 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				5F3D40A512FF416C00358CE7 /* GLESGameState.h */,
+				5F3D40A612FF416C00358CE7 /* GLESGameState.m */,
+				5F5A9EC412F5DEB9006A2A2C /* GameState.h */,
+				5F5A9EC512F5DEB9006A2A2C /* GameState.m */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		5F3D40B712FF423700358CE7 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				5F3D40A712FF416C00358CE7 /* MainMenuView.h */,
+				5F3D40A812FF416C00358CE7 /* MainMenuView.m */,
+				5F3D40C012FF436900358CE7 /* SettingsMenuViewController.h */,
+				5F3D40C112FF436900358CE7 /* SettingsMenuViewController.m */,
+			);
+			name = Menus;
 			sourceTree = "<group>";
 		};
 		5FA9B91D12FC760F00306D2D /* GameEngine */ = {
@@ -281,11 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				5FE99D3412FE214900F60AA4 /* emitter.pex */,
-				5FE99BBE12FDCBB800F60AA4 /* gsmainmenu-iPad.xib */,
-				5FE99BBF12FDCBB800F60AA4 /* gsMenu-iPad.xib */,
-				5FE99B6C12FDC44100F60AA4 /* gsMenu.h */,
-				5FE99B6D12FDC44100F60AA4 /* gsMenu.m */,
-				5FE99B6E12FDC44100F60AA4 /* gsMenu.xib */,
 				5FA9BA4612FC9EFF00306D2D /* atlas.png */,
 				5FA9BA4712FC9EFF00306D2D /* coordinates.plist */,
 				5FA9BA4812FC9EFF00306D2D /* ghost_spritesheet.png */,
@@ -293,33 +313,15 @@
 				5FA9BA4A12FC9EFF00306D2D /* testFont.fnt */,
 				5FA9BA4B12FC9EFF00306D2D /* testFont.png */,
 				5F5AA01612F61C0B006A2A2C /* knight.gif */,
-				5FD96F1112FA053600FF881E /* gsMainMenu.h */,
-				5FD96F1212FA053600FF881E /* gsMainMenu.m */,
-				5FD96F0D12FA051A00FF881E /* gsmainmenu.xib */,
-				5F5A9F0012F5E71D006A2A2C /* gsTest.h */,
-				5F5A9F0112F5E71D006A2A2C /* gsTest.m */,
 			);
 			name = TestData;
-			sourceTree = "<group>";
-		};
-		5FA9B97912FC7D6700306D2D /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				5F5A9ECA12F5DED0006A2A2C /* GameStateManager.m */,
-				5F5A9EC912F5DED0006A2A2C /* GameStateManager.h */,
-				28D7ACF60DDB3853001CB0EB /* GameEngineViewController.h */,
-				28D7ACF70DDB3853001CB0EB /* GameEngineViewController.m */,
-				5F5A9EC412F5DEB9006A2A2C /* GameState.h */,
-				5F5A9EC512F5DEB9006A2A2C /* GameState.m */,
-				5F5A9F9212F5FD04006A2A2C /* GLESGameState.h */,
-				5F5A9F9312F5FD04006A2A2C /* GLESGameState.m */,
-			);
-			name = Framework;
 			sourceTree = "<group>";
 		};
 		5FE99BA812FDC9DE00F60AA4 /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */,
+				5FE99BBE12FDCBB800F60AA4 /* MainMenuView-iPad.xib */,
 				5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */,
 			);
 			name = "Resources-iPad";
@@ -377,18 +379,18 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* GameEngineViewController.xib in Resources */,
 				5F5AA01712F61C0B006A2A2C /* knight.gif in Resources */,
-				5FD96F0E12FA051A00FF881E /* gsmainmenu.xib in Resources */,
 				5FA9BA4C12FC9EFF00306D2D /* atlas.png in Resources */,
 				5FA9BA4D12FC9EFF00306D2D /* coordinates.plist in Resources */,
 				5FA9BA4E12FC9EFF00306D2D /* ghost_spritesheet.png in Resources */,
 				5FA9BA4F12FC9EFF00306D2D /* player_spritesheet.png in Resources */,
 				5FA9BA5012FC9EFF00306D2D /* testFont.fnt in Resources */,
 				5FA9BA5112FC9EFF00306D2D /* testFont.png in Resources */,
-				5FE99B7012FDC44100F60AA4 /* gsMenu.xib in Resources */,
 				5FE99BAA12FDC9DF00F60AA4 /* MainWindow-iPad.xib in Resources */,
-				5FE99BC012FDCBB800F60AA4 /* gsmainmenu-iPad.xib in Resources */,
-				5FE99BC112FDCBB800F60AA4 /* gsMenu-iPad.xib in Resources */,
+				5FE99BC012FDCBB800F60AA4 /* MainMenuView-iPad.xib in Resources */,
 				5FE99D3512FE214900F60AA4 /* emitter.pex in Resources */,
+				5F3D40B012FF416C00358CE7 /* MainMenuView.xib in Resources */,
+				5F3D40C412FF436900358CE7 /* SettingsMenuViewController.xib in Resources */,
+				5F5715001300E07400D31399 /* SettingsMenuViewController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,12 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* GameEngineAppDelegate.m in Sources */,
-				28D7ACF80DDB3853001CB0EB /* GameEngineViewController.m in Sources */,
 				5F5A9EC612F5DEB9006A2A2C /* GameState.m in Sources */,
-				5F5A9ECB12F5DED0006A2A2C /* GameStateManager.m in Sources */,
-				5F5A9F0212F5E71D006A2A2C /* gsTest.m in Sources */,
-				5F5A9F9412F5FD04006A2A2C /* GLESGameState.m in Sources */,
 				5F5A9FA212F5FF6B006A2A2C /* ES1Renderer.m in Sources */,
 				5F5A9FCC12F6014C006A2A2C /* Image.m in Sources */,
 				5F5A9FCD12F6014C006A2A2C /* ImageRenderManager.m in Sources */,
@@ -421,8 +418,13 @@
 				5F5AA17B12F660E8006A2A2C /* SpriteSheet.m in Sources */,
 				5F5AA17C12F660E8006A2A2C /* TBXML.m in Sources */,
 				5F5AA17D12F660E8006A2A2C /* TBXMLParticleAdditions.m in Sources */,
-				5FD96F1312FA053600FF881E /* gsMainMenu.m in Sources */,
-				5FE99B6F12FDC44100F60AA4 /* gsMenu.m in Sources */,
+				5F3D40AC12FF416C00358CE7 /* GameEngineAppDelegate.m in Sources */,
+				5F3D40AD12FF416C00358CE7 /* GameEngineViewController.m in Sources */,
+				5F3D40AE12FF416C00358CE7 /* GLESGameState.m in Sources */,
+				5F3D40AF12FF416C00358CE7 /* MainMenuView.m in Sources */,
+				5F3D40B112FF416C00358CE7 /* GLView.m in Sources */,
+				5F3D40C312FF436900358CE7 /* SettingsMenuViewController.m in Sources */,
+				5F3D410B12FF4B3000358CE7 /* OpenGLViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +471,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					FRAME_COUNTER,
 					OPENAL_DEBUG,
 					GAMEENGINE_DEBUG,
 				);

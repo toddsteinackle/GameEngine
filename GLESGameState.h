@@ -17,6 +17,6 @@
 
 }
 
-- (id) initWithFrame:(CGRect)frame andManager:(GameStateManager*)pManager;
+- (id) initWithFrame:(CGRect)frame;
 
 @end

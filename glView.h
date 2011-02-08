@@ -1,5 +1,5 @@
 //
-//  gsTest.h
+//  GLView.h
 
 #import <Foundation/Foundation.h>
 
@@ -12,9 +12,11 @@
 @class Animation;
 @class BitmapFont;
 @class ParticleEmitter;
+@class GameEngineAppDelegate;
 
-@interface gsTest : GLESGameState {
+@interface GLView : GLESGameState {
 
+    GameEngineAppDelegate *appDelegate;
     int sceneState;
     float transY;
 

@@ -11,10 +11,9 @@
 
 @implementation GameState
 
--(id) initWithFrame:(CGRect)frame andManager:(GameStateManager*)pManager {
+-(id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
-		Manager = pManager;
 		self.userInteractionEnabled = true;
     }
     return self;

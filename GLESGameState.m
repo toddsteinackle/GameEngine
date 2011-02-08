@@ -26,8 +26,8 @@
     [self drawView:nil];
 }
 
--(id) initWithFrame:(CGRect)frame andManager:(GameStateManager*)pManager {
-    if (self = [super initWithFrame:frame andManager:pManager]) {
+-(id) initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
         // Initialization code
 		// Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;

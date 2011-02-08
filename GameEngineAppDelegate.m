@@ -11,10 +11,10 @@
 #import "GameEngineAppDelegate.h"
 #import "GameEngineViewController.h"
 #import "GameState.h"
+#import "Globals.h"
 
-#import "gsTest.h"
-#import "gsMainMenu.h"
-#import "gsMenu.h"
+#import "GLView.h"
+#import "MainMenuView.h"
 
 BOOL isGameCenterAvailable()
 {
@@ -32,17 +32,12 @@ BOOL isGameCenterAvailable()
 
 @synthesize window;
 @synthesize viewController;
+@synthesize currentViewController;
 @synthesize animating;
-@synthesize rotationSupported;
 @dynamic animationFrameInterval;
 
 #pragma mark -
 #pragma mark Game Engine
-
-#define IPHONE_HEIGHT 480
-#define IPHONE_WIDTH 320
-#define IPAD_HEIGHT 1024
-#define IPAD_WIDTH 768
 
 #define MAXIMUM_FRAME_RATE 45
 #define MINIMUM_FRAME_RATE 15
@@ -68,7 +63,7 @@ BOOL isGameCenterAvailable()
     }
 #endif
 
-	// Apple advises to use CACurrentMediaTime() as CFAbsoluteTimeGetCurrent() is synced with the movbile
+	// Apple advises to use CACurrentMediaTime() as CFAbsoluteTimeGetCurrent() is synced with the mobile
 	// network time and so could change causing hiccups.
 	currentTime = CACurrentMediaTime();
 	updateIterations = ((currentTime - lastFrameTime) + cyclesLeftOver);
@@ -80,18 +75,18 @@ BOOL isGameCenterAvailable()
 		updateIterations -= UPDATE_INTERVAL;
 
 		// Update the game logic passing in the fixed update interval as the delta
-        [((GameState*)viewController.view) updateSceneWithDelta:UPDATE_INTERVAL];
+        [((GameState*)currentViewController.view) updateSceneWithDelta:UPDATE_INTERVAL];
 	}
 
 	cyclesLeftOver = updateIterations;
 	lastFrameTime = currentTime;
 
 	// Render the scene
-    [((GameState*)viewController.view) drawView:nil];
+    [((GameState*)currentViewController.view) drawView:nil];
 }
 
 - (void) renderCurrentScene {
-    [((GameState*)viewController.view) renderScene];
+    [((GameState*)currentViewController.view) renderScene];
 }
 
 - (NSInteger) animationFrameInterval
@@ -103,7 +98,7 @@ BOOL isGameCenterAvailable()
 {
 	// Frame interval defines how many display frames must pass between each time the
 	// display link fires. The display link will only fire 30 times a second when the
-	// frame internal is two on a display that refreshes 60 times a second. The default
+	// frame interval is two on a display that refreshes 60 times a second. The default
 	// frame interval setting of one will fire 60 times a second when the display refreshes
 	// at 60 times a second. A frame interval setting of less than one results in undefined
 	// behavior.
@@ -163,32 +158,6 @@ BOOL isGameCenterAvailable()
 	}
 }
 
-- (void) doStateChange: (NSString*) className
-{
-	BOOL animateTransition = true;
-
-	if(animateTransition){
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:0.5];
-		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:window cache:YES]; //does nothing without this line.
-	}
-
-	if( viewController.view != nil ) {
-		[viewController.view removeFromSuperview]; //remove view from window's subviews.
-    }
-
-    viewController.view = [gameStates objectForKey:className];
-
-	//now set our view as visible
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
-
-	if(animateTransition){
-		[UIView commitAnimations];
-	}
-
-}
-
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -196,27 +165,18 @@ BOOL isGameCenterAvailable()
 
     // Override point for customization after application launch.
 
-    gameStates = [[NSMutableDictionary alloc] init];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        glTestView = [[gsTest alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT) andManager:self];
-        [gameStates setObject:glTestView forKey:@"glTest"];
-
-        mainMenu = [[gsMainMenu alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT) andManager:self];
-        [gameStates setObject:mainMenu forKey:@"MainMenu"];
-
-        menu = [[gsMenu alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT) andManager:self];
-        [gameStates setObject:menu forKey:@"menu"];
+        mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT)];
     } else {
-        glTestView = [[gsTest alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
-        [gameStates setObject:glTestView forKey:@"glTest"];
-
-        mainMenu = [[gsMainMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
-        [gameStates setObject:mainMenu forKey:@"MainMenu"];
-
-        menu = [[gsMenu alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT) andManager:self];
-        [gameStates setObject:menu forKey:@"menu"];
+        mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT)];
     }
 
+    viewController.view = mainMenu;
+    [viewController viewDidLoad];
+
+	//now set our view as visible
+    [window addSubview:viewController.view];
+    [window makeKeyAndVisible];
 
     animating = FALSE;
     displayLinkSupported = FALSE;
@@ -230,13 +190,9 @@ BOOL isGameCenterAvailable()
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         displayLinkSupported = TRUE;
-    reqSysVer = @"3.2";
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
-        rotationSupported = TRUE;
 
-    [self doStateChange:@"MainMenu"];
+    currentViewController = viewController;
 
-    [self startAnimation];
 #ifdef GAMECENTER
     if (isGameCenterAvailable()) {
     #ifdef GAMECENTER_DEBUG
@@ -296,7 +252,9 @@ BOOL isGameCenterAvailable()
      application was inactive. If the application was previously in the
      background, optionally refresh the user interface.
      */
-    [self startAnimation];
+    if ([currentViewController.view isKindOfClass:[GLESGameState class]]) {
+        [self startAnimation];
+    }
 }
 
 
@@ -370,7 +328,6 @@ BOOL isGameCenterAvailable()
 
 
 - (void)dealloc {
-    [glTestView release];
     [mainMenu release];
     [viewController release];
     [window release];

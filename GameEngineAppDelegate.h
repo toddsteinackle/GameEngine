@@ -7,30 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GameStateManager.h"
 
 @class GameEngineViewController;
-@class gsTest;
-@class gsMainMenu;
-@class gsMenu;
+@class MainMenuView;
 
-@interface GameEngineAppDelegate : GameStateManager <UIApplicationDelegate> {
+@interface GameEngineAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     GameEngineViewController *viewController;
+    UIViewController *currentViewController;
+    MainMenuView *mainMenu;
 
 #ifdef FRAME_COUNTER
     CFTimeInterval m_FPS_lastSecondStart;
     int m_FPS_framesThisSecond;
     int m_FPS;
 #endif
-
-    gsTest *glTestView;
-    gsMainMenu *mainMenu;
-    gsMenu *menu;
-
-    NSMutableDictionary *gameStates;
-    BOOL rotationSupported;
-
 
 @private
     BOOL animating;
@@ -47,9 +38,9 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet GameEngineViewController *viewController;
+@property (nonatomic, retain) IBOutlet UIViewController *currentViewController;
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
-@property (readonly, nonatomic) BOOL rotationSupported;
 
 - (void) startAnimation;
 - (void) stopAnimation;

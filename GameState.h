@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameStateManager.h"
 
 
 @interface GameState : UIView {
-    GameStateManager* Manager;
+
 }
 
-- (id) initWithFrame:(CGRect)frame andManager:(GameStateManager*)Manager;
+- (id) initWithFrame:(CGRect)frame;
 - (void) renderScene;
 - (void) updateSceneWithDelta:(float)aDelta;
 - (void) drawView:(id)sender;

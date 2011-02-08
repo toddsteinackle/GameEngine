@@ -8,13 +8,14 @@
 
 #import "GameEngineViewController.h"
 #import "GameEngineAppDelegate.h"
+#import "SettingsMenuViewController.h"
+#import "OpenGLViewController.h"
 
 @implementation GameEngineViewController
 
-- (void) showLeaderboard {
+- (void)showLeaderboard {
 
-    GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
-
+    leaderboardController = [[GKLeaderboardViewController alloc] init];
     if (leaderboardController != nil) {
         leaderboardController.leaderboardDelegate = self;
         [self presentModalViewController: leaderboardController animated: YES];
@@ -22,6 +23,32 @@
 }
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
+
+    [self dismissModalViewControllerAnimated:YES];
+    [leaderboardController release];
+
+}
+
+- (void)showSettingsMenu {
+
+    [self presentModalViewController:settingsMenu animated: YES];
+
+}
+
+- (void)showGLView {
+
+    appDelegate.currentViewController = glViewController;
+    [appDelegate startAnimation];
+    [self presentModalViewController:glViewController animated: YES];
+
+}
+- (void)dismissGLView {
+    [appDelegate stopAnimation];
+    [self dismissModalViewControllerAnimated:YES];
+    appDelegate.currentViewController = self;
+}
+
+- (void)dismiss {
 
     [self dismissModalViewControllerAnimated:YES];
 
@@ -45,24 +72,25 @@
 
 
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController-iPad" bundle:[NSBundle mainBundle]];
+    } else {
+        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController" bundle:[NSBundle mainBundle]];
+    }
+    glViewController = [[OpenGLViewController alloc] initWithNibName:nil bundle:nil];
+    appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
-*/
-
 
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
-    GameEngineAppDelegate *appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (appDelegate.rotationSupported) {
-        return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-        //return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-    }
-    return NO;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    //return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 
@@ -80,6 +108,8 @@
 
 
 - (void)dealloc {
+    [settingsMenu release];
+    [glViewController release];
     [super dealloc];
 }
 

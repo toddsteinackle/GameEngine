@@ -37,7 +37,7 @@ typedef struct {
 	GLfloat timeToLive;
 } Particle;
 
-#define MAXIMUM_UPDATE_RATE 90.0f	// The maximum number of updates that occur per frame
+#define MAXIMUM_UPDATE_RATE 30.0f	// The maximum number of updates that occur per frame
 
 // The particleEmitter allows you to define parameters that are used when generating particles.
 // These particles are OpenGL particle sprites that based on the parameters provided each have

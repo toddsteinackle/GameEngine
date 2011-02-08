@@ -19,22 +19,6 @@
 // Macro that allows you to clamp a value within the defined bounds
 #define CLAMP(X, A, B) ((X < A) ? A : ((X > B) ? B : X))
 
-#pragma mark -
-#pragma mark Enumerators
-
-// Scene States
-enum SceneStates {
-	SceneState_TransitionIn,
-};
-
-// Entity states
-enum EntityStates {
-	EntityState_Idle,
-};
-
-#pragma mark -
-#pragma mark Constants
-
 
 #pragma mark -
 #pragma mark Inline Functions

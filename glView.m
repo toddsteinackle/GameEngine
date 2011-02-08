@@ -1,7 +1,7 @@
 //
-//  gsTest.m
+//  GLView.m
 
-#import "gsTest.h"
+#import "GLView.h"
 #import "GameEngineAppDelegate.h"
 #import "Image.h"
 #import "ImageRenderManager.h"
@@ -10,13 +10,16 @@
 #import "SpriteSheet.h"
 #import "PackedSpriteSheet.h"
 #import "ParticleEmitter.h"
+#import "GameEngineViewController.h"
 
-@implementation gsTest
+@implementation GLView
 
--(gsTest*) initWithFrame:(CGRect)frame andManager:(GameStateManager*)pManager
+-(GLView*) initWithFrame:(CGRect)frame
 {
+    appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
+
     sceneState = 3;
-	if (self = [super initWithFrame:frame andManager:pManager]){
+	if (self = [super initWithFrame:frame]){
 		//do initialization here.
         switch (sceneState) {
             case 1:
@@ -242,7 +245,8 @@
     NSLog(@"x -- %f y -- %f", loc.x, loc.y);
 	NSUInteger numTaps = [touch tapCount];
 	if( numTaps > 1 ) {
-		[Manager doStateChange:@"MainMenu"];
+        [appDelegate.viewController dismissGLView];
+
 	}
 }
 
