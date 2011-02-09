@@ -24,7 +24,6 @@
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
 - (void)showSettingsMenu;
 - (void)showGLView;
-- (void)dismiss;
 - (void)dismissGLView;
 
 @end

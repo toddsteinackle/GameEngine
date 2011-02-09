@@ -14,44 +14,38 @@
 @implementation GameEngineViewController
 
 - (void)showLeaderboard {
-
     leaderboardController = [[GKLeaderboardViewController alloc] init];
     if (leaderboardController != nil) {
         leaderboardController.leaderboardDelegate = self;
-        [self presentModalViewController: leaderboardController animated: YES];
+        [self presentModalViewController:leaderboardController animated:YES];
     }
 }
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
-
     [self dismissModalViewControllerAnimated:YES];
     [leaderboardController release];
-
 }
 
 - (void)showSettingsMenu {
-
-    [self presentModalViewController:settingsMenu animated: YES];
-
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController-iPad" bundle:[NSBundle mainBundle]];
+    } else {
+        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController" bundle:[NSBundle mainBundle]];
+    }
+    [self presentModalViewController:settingsMenu animated:YES];
+    appDelegate.currentViewController = settingsMenu;
 }
 
 - (void)showGLView {
-
     appDelegate.currentViewController = glViewController;
     [appDelegate startAnimation];
-    [self presentModalViewController:glViewController animated: YES];
-
+    [self presentModalViewController:glViewController animated:YES];
 }
+
 - (void)dismissGLView {
     [appDelegate stopAnimation];
     [self dismissModalViewControllerAnimated:YES];
     appDelegate.currentViewController = self;
-}
-
-- (void)dismiss {
-
-    [self dismissModalViewControllerAnimated:YES];
-
 }
 
 /*
@@ -76,11 +70,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController-iPad" bundle:[NSBundle mainBundle]];
-    } else {
-        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController" bundle:[NSBundle mainBundle]];
-    }
     glViewController = [[OpenGLViewController alloc] initWithNibName:nil bundle:nil];
     appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
@@ -108,7 +97,6 @@
 
 
 - (void)dealloc {
-    [settingsMenu release];
     [glViewController release];
     [super dealloc];
 }

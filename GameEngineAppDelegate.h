@@ -16,6 +16,8 @@
     GameEngineViewController *viewController;
     UIViewController *currentViewController;
     MainMenuView *mainMenu;
+    BOOL gameCenterAvailable;
+    BOOL ios4orGreater;
 
 #ifdef FRAME_COUNTER
     CFTimeInterval m_FPS_lastSecondStart;
@@ -41,14 +43,16 @@
 @property (nonatomic, retain) IBOutlet UIViewController *currentViewController;
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
+@property (readonly, nonatomic) BOOL gameCenterAvailable;
+@property (readonly, nonatomic) BOOL ios4orGreater;
 
-- (void) startAnimation;
-- (void) stopAnimation;
-- (void) gameLoop;
-- (void) renderCurrentScene;
-- (void) authenticateLocalPlayer;
-- (void) registerForAuthenticationNotification;
-- (void) authenticationChanged;
+- (void)startAnimation;
+- (void)stopAnimation;
+- (void)gameLoop;
+- (void)renderCurrentScene;
+- (void)authenticateLocalPlayer;
+- (void)registerForAuthenticationNotification;
+- (void)authenticationChanged;
 
 @end
 

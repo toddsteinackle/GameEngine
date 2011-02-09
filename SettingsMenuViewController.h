@@ -12,9 +12,7 @@
 
 
 @interface SettingsMenuViewController : UIViewController {
-
     GameEngineAppDelegate * appDelegate;
-
 }
 
 - (IBAction)dismiss;

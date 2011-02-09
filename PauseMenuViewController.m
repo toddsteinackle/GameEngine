@@ -1,32 +1,46 @@
 //
-//  SettingsMenuViewController.m
+//  PauseMenuViewController.m
 //  GameEngine
 //
-//  Created by Todd Steinackle on 2/6/11.
+//  Created by Todd Steinackle on 2/8/11.
 //  Copyright 2011 The No Quarter Arcade. All rights reserved.
 //
 
+#import "PauseMenuViewController.h"
+#import "OpenGLViewController.h"
 #import "SettingsMenuViewController.h"
-#import "GameEngineAppDelegate.h"
 
 
-@implementation SettingsMenuViewController
+@implementation PauseMenuViewController
+
+@synthesize callingController;
 
 - (IBAction)dismiss {
-    [self.parentViewController dismissModalViewControllerAnimated:YES];
-    [self release];
-    appDelegate.currentViewController = self.parentViewController;
+    [callingController dismissPauseView];
 }
 
+- (IBAction)quit {
+    [callingController quitGame];
+}
+
+- (IBAction)showSettingsMenu {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController-iPad" bundle:[NSBundle mainBundle]];
+    } else {
+        settingsMenu = [[SettingsMenuViewController alloc] initWithNibName:@"SettingsMenuViewController" bundle:[NSBundle mainBundle]];
+    }
+    [self presentModalViewController:settingsMenu animated:YES];
+}
+
+/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization.
-        appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
     }
     return self;
 }
-
+*/
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -35,14 +49,12 @@
 }
 */
 
-
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
     //return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
-
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

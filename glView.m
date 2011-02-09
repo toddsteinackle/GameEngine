@@ -11,11 +11,14 @@
 #import "PackedSpriteSheet.h"
 #import "ParticleEmitter.h"
 #import "GameEngineViewController.h"
+#import "OpenGLViewController.h"
 
 @implementation GLView
 
--(GLView*) initWithFrame:(CGRect)frame
-{
+@synthesize viewController;
+
+-(GLView*) initWithFrame:(CGRect)frame {
+
     appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     sceneState = 3;
@@ -149,8 +152,8 @@
 	return self;
 }
 
--(void) renderScene
-{
+-(void) renderScene {
+
     switch (sceneState) {
         case 1:
             [myImage1 renderCenteredAtPoint:CGPointMake(160, 240)];
@@ -188,7 +191,6 @@
         default:
             break;
     }
-
 }
 
 - (void) updateSceneWithDelta:(float)aDelta {
@@ -235,18 +237,15 @@
         default:
             break;
     }
-
 }
 
--(void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
-{
+-(void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
 	UITouch* touch = [touches anyObject];
     CGPoint loc = [touch locationInView:self];
     NSLog(@"x -- %f y -- %f", loc.x, loc.y);
 	NSUInteger numTaps = [touch tapCount];
 	if( numTaps > 1 ) {
-        [appDelegate.viewController dismissGLView];
-
+        [self.viewController showPauseView];
 	}
 }
 

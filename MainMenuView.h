@@ -10,6 +10,7 @@
 @interface MainMenuView : GameState {
 	IBOutlet UIView* subview;
     GameEngineAppDelegate *appDelegate;
+    IBOutlet UIButton* leaderboardButton;
 }
 
 - (IBAction)doGraphicsTest;

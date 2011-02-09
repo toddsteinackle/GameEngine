@@ -13,10 +13,13 @@
 @class BitmapFont;
 @class ParticleEmitter;
 @class GameEngineAppDelegate;
+@class OpenGLViewController;
 
 @interface GLView : GLESGameState {
 
     GameEngineAppDelegate *appDelegate;
+    OpenGLViewController *viewController;
+
     int sceneState;
     float transY;
 
@@ -37,5 +40,7 @@
     ParticleEmitter *pe;
 
 }
+
+@property (nonatomic, retain) OpenGLViewController *viewController;
 
 @end

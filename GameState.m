@@ -11,7 +11,7 @@
 
 @implementation GameState
 
--(id) initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		self.userInteractionEnabled = true;
@@ -19,9 +19,9 @@
     return self;
 }
 
-- (void) updateSceneWithDelta:(float)aDelta { }
-- (void) renderScene { }
-- (void) drawView:(id)sender{ }
+- (void)updateSceneWithDelta:(float)aDelta { }
+- (void)renderScene { }
+- (void)drawView:(id)sender { }
 
 - (void)dealloc {
     [super dealloc];

@@ -22,6 +22,8 @@
 		5F3D40C312FF436900358CE7 /* SettingsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D40C112FF436900358CE7 /* SettingsMenuViewController.m */; };
 		5F3D40C412FF436900358CE7 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3D40C212FF436900358CE7 /* SettingsMenuViewController.xib */; };
 		5F3D410B12FF4B3000358CE7 /* OpenGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3D410A12FF4B3000358CE7 /* OpenGLViewController.m */; };
+		5F50DDB913019C77002F29B2 /* PauseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F50DDB713019C77002F29B2 /* PauseMenuViewController.m */; };
+		5F50DDBA13019C77002F29B2 /* PauseMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F50DDB813019C77002F29B2 /* PauseMenuViewController.xib */; };
 		5F5715001300E07400D31399 /* SettingsMenuViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */; };
 		5F5A9EC612F5DEB9006A2A2C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9EC512F5DEB9006A2A2C /* GameState.m */; };
 		5F5A9F2A12F5ECD7006A2A2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5A9F2912F5ECD7006A2A2C /* QuartzCore.framework */; };
@@ -47,6 +49,7 @@
 		5F5AA19B12F66211006A2A2C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5AA19A12F66211006A2A2C /* libz.dylib */; };
 		5F5AA1A312F66251006A2A2C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5AA1A212F66251006A2A2C /* AVFoundation.framework */; };
 		5F5AA1AB12F6627C006A2A2C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5AA1AA12F6627C006A2A2C /* AudioToolbox.framework */; };
+		5F73F2761301F83A0017A10A /* PauseMenuViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F73F2751301F83A0017A10A /* PauseMenuViewController-iPad.xib */; };
 		5FA9BA4C12FC9EFF00306D2D /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4612FC9EFF00306D2D /* atlas.png */; };
 		5FA9BA4D12FC9EFF00306D2D /* coordinates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4712FC9EFF00306D2D /* coordinates.plist */; };
 		5FA9BA4E12FC9EFF00306D2D /* ghost_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4812FC9EFF00306D2D /* ghost_spritesheet.png */; };
@@ -84,6 +87,9 @@
 		5F3D40C212FF436900358CE7 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		5F3D410912FF4B3000358CE7 /* OpenGLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLViewController.h; sourceTree = "<group>"; };
 		5F3D410A12FF4B3000358CE7 /* OpenGLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLViewController.m; sourceTree = "<group>"; };
+		5F50DDB613019C77002F29B2 /* PauseMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenuViewController.h; sourceTree = "<group>"; };
+		5F50DDB713019C77002F29B2 /* PauseMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenuViewController.m; sourceTree = "<group>"; };
+		5F50DDB813019C77002F29B2 /* PauseMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PauseMenuViewController.xib; sourceTree = "<group>"; };
 		5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsMenuViewController-iPad.xib"; sourceTree = "<group>"; };
 		5F5715231300E44500D31399 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		5F5A9EC412F5DEB9006A2A2C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 		5F5AA19A12F66211006A2A2C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5F5AA1A212F66251006A2A2C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5F5AA1AA12F6627C006A2A2C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5F73F2751301F83A0017A10A /* PauseMenuViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "PauseMenuViewController-iPad.xib"; sourceTree = "<group>"; };
 		5FA9BA4612FC9EFF00306D2D /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		5FA9BA4712FC9EFF00306D2D /* coordinates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = coordinates.plist; sourceTree = "<group>"; };
 		5FA9BA4812FC9EFF00306D2D /* ghost_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost_spritesheet.png; sourceTree = "<group>"; };
@@ -211,6 +218,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F50DDB813019C77002F29B2 /* PauseMenuViewController.xib */,
 				2899E5210DE3E06400AC0155 /* GameEngineViewController.xib */,
 				5F3D40C212FF436900358CE7 /* SettingsMenuViewController.xib */,
 				5F3D40A912FF416C00358CE7 /* MainMenuView.xib */,
@@ -256,6 +264,8 @@
 				5F3D40A812FF416C00358CE7 /* MainMenuView.m */,
 				5F3D40C012FF436900358CE7 /* SettingsMenuViewController.h */,
 				5F3D40C112FF436900358CE7 /* SettingsMenuViewController.m */,
+				5F50DDB613019C77002F29B2 /* PauseMenuViewController.h */,
+				5F50DDB713019C77002F29B2 /* PauseMenuViewController.m */,
 			);
 			name = Menus;
 			sourceTree = "<group>";
@@ -320,6 +330,7 @@
 		5FE99BA812FDC9DE00F60AA4 /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				5F73F2751301F83A0017A10A /* PauseMenuViewController-iPad.xib */,
 				5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */,
 				5FE99BBE12FDCBB800F60AA4 /* MainMenuView-iPad.xib */,
 				5FE99BA912FDC9DF00F60AA4 /* MainWindow-iPad.xib */,
@@ -391,6 +402,8 @@
 				5F3D40B012FF416C00358CE7 /* MainMenuView.xib in Resources */,
 				5F3D40C412FF436900358CE7 /* SettingsMenuViewController.xib in Resources */,
 				5F5715001300E07400D31399 /* SettingsMenuViewController-iPad.xib in Resources */,
+				5F50DDBA13019C77002F29B2 /* PauseMenuViewController.xib in Resources */,
+				5F73F2761301F83A0017A10A /* PauseMenuViewController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +438,7 @@
 				5F3D40B112FF416C00358CE7 /* GLView.m in Sources */,
 				5F3D40C312FF436900358CE7 /* SettingsMenuViewController.m in Sources */,
 				5F3D410B12FF4B3000358CE7 /* OpenGLViewController.m in Sources */,
+				5F50DDB913019C77002F29B2 /* PauseMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

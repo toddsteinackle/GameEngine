@@ -13,9 +13,9 @@
 
 }
 
-- (id) initWithFrame:(CGRect)frame;
-- (void) renderScene;
-- (void) updateSceneWithDelta:(float)aDelta;
-- (void) drawView:(id)sender;
+- (id)initWithFrame:(CGRect)frame;
+- (void)renderScene;
+- (void)updateSceneWithDelta:(float)aDelta;
+- (void)drawView:(id)sender;
 
 @end

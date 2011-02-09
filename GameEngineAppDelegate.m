@@ -16,8 +16,7 @@
 #import "GLView.h"
 #import "MainMenuView.h"
 
-BOOL isGameCenterAvailable()
-{
+BOOL isGameCenterAvailable() {
     // Check for presence of GKLocalPlayer API.
     Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
     // The device must be running running iOS 4.1 or later.
@@ -35,6 +34,8 @@ BOOL isGameCenterAvailable()
 @synthesize currentViewController;
 @synthesize animating;
 @dynamic animationFrameInterval;
+@synthesize gameCenterAvailable;
+@synthesize ios4orGreater;
 
 #pragma mark -
 #pragma mark Game Engine
@@ -89,13 +90,11 @@ BOOL isGameCenterAvailable()
     [((GameState*)currentViewController.view) renderScene];
 }
 
-- (NSInteger) animationFrameInterval
-{
+- (NSInteger)animationFrameInterval {
 	return animationFrameInterval;
 }
 
-- (void) setAnimationFrameInterval:(NSInteger)frameInterval
-{
+- (void)setAnimationFrameInterval:(NSInteger)frameInterval {
 	// Frame interval defines how many display frames must pass between each time the
 	// display link fires. The display link will only fire 30 times a second when the
 	// frame interval is two on a display that refreshes 60 times a second. The default
@@ -114,8 +113,7 @@ BOOL isGameCenterAvailable()
 	}
 }
 
-- (void) startAnimation
-{
+- (void)startAnimation {
 	if (!animating)
 	{
 		if (displayLinkSupported)
@@ -139,8 +137,7 @@ BOOL isGameCenterAvailable()
 	}
 }
 
-- (void)stopAnimation
-{
+- (void)stopAnimation {
 	if (animating)
 	{
 		if (displayLinkSupported)
@@ -165,6 +162,9 @@ BOOL isGameCenterAvailable()
 
     // Override point for customization after application launch.
 
+    if (isGameCenterAvailable()) {
+        gameCenterAvailable = TRUE;
+    }
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT)];
     } else {
@@ -190,22 +190,24 @@ BOOL isGameCenterAvailable()
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
         displayLinkSupported = TRUE;
+    reqSysVer = @"4.0";
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
+        ios4orGreater = TRUE;
 
     currentViewController = viewController;
 
 #ifdef GAMECENTER
-    if (isGameCenterAvailable()) {
-    #ifdef GAMECENTER_DEBUG
-            NSLog(@"Game Center Available");
-    #endif
-        //self.gameCenterAvailable = TRUE;
+    if (gameCenterAvailable) {
+#ifdef GAMECENTER_DEBUG
+        NSLog(@"Game Center Available");
+#endif
         [self authenticateLocalPlayer];
         [self registerForAuthenticationNotification];
     } else {
-    #ifdef GAMECENTER_DEBUG
-            NSLog(@"Game Center Not Available");
-    #endif
-        //self.gameCenterAvailable = FALSE;
+#ifdef GAMECENTER_DEBUG
+        NSLog(@"Game Center Not Available");
+#endif
+        gameCenterAvailable = FALSE;
     }
 #endif
 
@@ -269,8 +271,7 @@ BOOL isGameCenterAvailable()
 #pragma mark -
 #pragma mark Game Center
 
-- (void) authenticateLocalPlayer
-{
+- (void)authenticateLocalPlayer {
     [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
         if (error == nil)
         {
@@ -290,8 +291,7 @@ BOOL isGameCenterAvailable()
     }];
 }
 
-- (void) registerForAuthenticationNotification
-{
+- (void)registerForAuthenticationNotification {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver: self
            selector:@selector(authenticationChanged)
@@ -299,8 +299,7 @@ BOOL isGameCenterAvailable()
              object:nil];
 }
 
-- (void) authenticationChanged
-{
+- (void)authenticationChanged {
     if ([GKLocalPlayer localPlayer].isAuthenticated) {
         // Insert code here to handle a successful authentication.
 #ifdef GAMECENTER_DEBUG

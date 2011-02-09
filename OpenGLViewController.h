@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class GLView;
+@class PauseMenuViewController;
+@class GameEngineAppDelegate;
 
 @interface OpenGLViewController : UIViewController {
     GLView *glView;
+    PauseMenuViewController *pauseMenu;
+    GameEngineAppDelegate *appDelegate;
 }
+
+- (void)showPauseView;
+- (void)dismissPauseView;
+- (void)quitGame;
 
 @end

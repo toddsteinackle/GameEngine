@@ -7,8 +7,7 @@
 
 @implementation MainMenuView
 
--(MainMenuView*)initWithFrame:(CGRect)frame
-{
+- (MainMenuView*)initWithFrame:(CGRect)frame {
 	if(self = [super initWithFrame:frame]) {
 		//load the .xib file here.
 		//this will instantiate the 'subview' uiview.
@@ -22,6 +21,9 @@
 		//this will let everything from the nib file show up on screen.
 		[self addSubview:subview];
         appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
+        if (!appDelegate.gameCenterAvailable) {
+            leaderboardButton.hidden = TRUE;
+        }
 	}
 	return self;
 }

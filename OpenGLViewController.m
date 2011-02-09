@@ -7,6 +7,9 @@
 //
 
 #import "OpenGLViewController.h"
+#import "PauseMenuViewController.h"
+#import "GameEngineViewController.h"
+#import "GameEngineAppDelegate.h"
 #import "GLView.h"
 #import "Globals.h"
 
@@ -23,10 +26,40 @@
             glView = [[GLView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT)];
         }
         self.view = glView;
+        glView.viewController = self;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            pauseMenu = [[PauseMenuViewController alloc] initWithNibName:@"PauseMenuViewController-iPad" bundle:[NSBundle mainBundle]];
+        } else {
+            pauseMenu = [[PauseMenuViewController alloc] initWithNibName:@"PauseMenuViewController" bundle:[NSBundle mainBundle]];
+        }
+        pauseMenu.callingController = self;
+        appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
     }
     return self;
 }
 
+- (void)showPauseView {
+    [appDelegate stopAnimation];
+    [self presentModalViewController:pauseMenu animated:YES];
+    appDelegate.currentViewController = pauseMenu;
+}
+
+- (void)dismissPauseView {
+    [self dismissModalViewControllerAnimated:YES];
+    appDelegate.currentViewController = self;
+    [appDelegate startAnimation];
+}
+
+- (void)quitGame {
+    if (appDelegate.ios4orGreater) {
+        [appDelegate.viewController dismissGLView];
+    } else {
+        [self dismissModalViewControllerAnimated:NO];
+        [appDelegate stopAnimation];
+        [self dismissModalViewControllerAnimated:NO];
+        appDelegate.currentViewController = appDelegate.viewController;
+    }
+}
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -66,6 +99,7 @@
 
 - (void)dealloc {
     [glView release];
+    [pauseMenu release];
     [super dealloc];
 }
 

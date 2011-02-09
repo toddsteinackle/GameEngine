@@ -13,20 +13,20 @@
 @implementation GLESGameState
 
 // You must implement this method
-+ (Class) layerClass {
++ (Class)layerClass {
     return [CAEAGLLayer class];
 }
 
-- (void) drawView:(id)sender {
+- (void)drawView:(id)sender {
     [renderer render];
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
 	[renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
     [self drawView:nil];
 }
 
--(id) initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		// Get the layer
@@ -48,7 +48,7 @@
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     [renderer release];
     [super dealloc];
 }
