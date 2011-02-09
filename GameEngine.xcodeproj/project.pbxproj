@@ -50,6 +50,8 @@
 		5F5AA1A312F66251006A2A2C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5AA1A212F66251006A2A2C /* AVFoundation.framework */; };
 		5F5AA1AB12F6627C006A2A2C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5AA1AA12F6627C006A2A2C /* AudioToolbox.framework */; };
 		5F73F2761301F83A0017A10A /* PauseMenuViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F73F2751301F83A0017A10A /* PauseMenuViewController-iPad.xib */; };
+		5FA853671303538000B91098 /* AbstractEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA853661303538000B91098 /* AbstractEntity.m */; };
+		5FA85374130356D000B91098 /* Primitives.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FA85373130356D000B91098 /* Primitives.m */; };
 		5FA9BA4C12FC9EFF00306D2D /* atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4612FC9EFF00306D2D /* atlas.png */; };
 		5FA9BA4D12FC9EFF00306D2D /* coordinates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4712FC9EFF00306D2D /* coordinates.plist */; };
 		5FA9BA4E12FC9EFF00306D2D /* ghost_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FA9BA4812FC9EFF00306D2D /* ghost_spritesheet.png */; };
@@ -138,6 +140,10 @@
 		5F5AA1A212F66251006A2A2C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5F5AA1AA12F6627C006A2A2C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		5F73F2751301F83A0017A10A /* PauseMenuViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "PauseMenuViewController-iPad.xib"; sourceTree = "<group>"; };
+		5FA853651303538000B91098 /* AbstractEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractEntity.h; sourceTree = "<group>"; };
+		5FA853661303538000B91098 /* AbstractEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractEntity.m; sourceTree = "<group>"; };
+		5FA85372130356D000B91098 /* Primitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Primitives.h; sourceTree = "<group>"; };
+		5FA85373130356D000B91098 /* Primitives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Primitives.m; sourceTree = "<group>"; };
 		5FA9BA4612FC9EFF00306D2D /* atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas.png; sourceTree = "<group>"; };
 		5FA9BA4712FC9EFF00306D2D /* coordinates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = coordinates.plist; sourceTree = "<group>"; };
 		5FA9BA4812FC9EFF00306D2D /* ghost_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost_spritesheet.png; sourceTree = "<group>"; };
@@ -184,6 +190,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5FA853651303538000B91098 /* AbstractEntity.h */,
+				5FA853661303538000B91098 /* AbstractEntity.m */,
 				5F5715231300E44500D31399 /* Globals.h */,
 				5F3D410912FF4B3000358CE7 /* OpenGLViewController.h */,
 				5F3D410A12FF4B3000358CE7 /* OpenGLViewController.m */,
@@ -273,6 +281,8 @@
 		5FA9B91D12FC760F00306D2D /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				5FA85372130356D000B91098 /* Primitives.h */,
+				5FA85373130356D000B91098 /* Primitives.m */,
 				5F5A9F9F12F5FF6B006A2A2C /* ES1Renderer.h */,
 				5F5A9FA012F5FF6B006A2A2C /* ES1Renderer.m */,
 				5F5A9FA112F5FF6B006A2A2C /* ESRenderer.h */,
@@ -439,6 +449,8 @@
 				5F3D40C312FF436900358CE7 /* SettingsMenuViewController.m in Sources */,
 				5F3D410B12FF4B3000358CE7 /* OpenGLViewController.m in Sources */,
 				5F50DDB913019C77002F29B2 /* PauseMenuViewController.m in Sources */,
+				5FA853671303538000B91098 /* AbstractEntity.m in Sources */,
+				5FA85374130356D000B91098 /* Primitives.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
