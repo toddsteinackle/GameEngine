@@ -4,7 +4,6 @@
 #import "Global.h"
 
 @class Image;
-@class GameController;
 
 #define kMaxCharsInFont 223
 
@@ -53,7 +52,6 @@ enum {
 //
 @interface BitmapFont : NSObject {
 
-	GameController *sharedGameController;	// Reference to the game controller
 	Image *image;							// Image file that contains the fonts spritesheet
     BitmapFontChar *charsArray;				// Array of BitmapFontChar objects that will hold all the define font characters
     int lineHeight;						// The common line height of the entire font found in the control file
