@@ -10,6 +10,8 @@
 #import "GameEngineAppDelegate.h"
 #import "SettingsMenuViewController.h"
 #import "OpenGLViewController.h"
+#import "MainMenuView.h"
+#import "Globals.h"
 
 @implementation GameEngineViewController
 
@@ -64,14 +66,22 @@
 - (void)loadView {
 }
 
-
+- (void)customInit {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT)];
+    } else {
+        mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT)];
+    }
+    self.view = mainMenu;
+    glViewController = [[OpenGLViewController alloc] initWithNibName:nil bundle:nil];
+    appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    glViewController = [[OpenGLViewController alloc] initWithNibName:nil bundle:nil];
-    appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.view = mainMenu;
 }
 
 
@@ -98,6 +108,7 @@
 
 - (void)dealloc {
     [glViewController release];
+    [mainMenu release];
     [super dealloc];
 }
 

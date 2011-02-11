@@ -9,13 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class GameEngineViewController;
-@class MainMenuView;
 
 @interface GameEngineAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     GameEngineViewController *viewController;
     UIViewController *currentViewController;
-    MainMenuView *mainMenu;
     BOOL gameCenterAvailable;
     BOOL ios4orGreater;
 

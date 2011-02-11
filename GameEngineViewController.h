@@ -12,12 +12,14 @@
 @class SettingsMenuViewController;
 @class GameEngineAppDelegate;
 @class OpenGLViewController;
+@class MainMenuView;
 
 @interface GameEngineViewController : UIViewController <GKLeaderboardViewControllerDelegate> {
     GKLeaderboardViewController *leaderboardController;
     SettingsMenuViewController *settingsMenu;
     GameEngineAppDelegate *appDelegate;
     OpenGLViewController *glViewController;
+    MainMenuView *mainMenu;
 }
 
 - (void)showLeaderboard;
@@ -25,6 +27,7 @@
 - (void)showSettingsMenu;
 - (void)showGLView;
 - (void)dismissGLView;
+- (void)customInit;
 
 @end
 

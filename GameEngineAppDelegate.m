@@ -10,11 +10,7 @@
 #import <GameKit/GameKit.h>
 #import "GameEngineAppDelegate.h"
 #import "GameEngineViewController.h"
-#import "GameState.h"
-#import "Globals.h"
-
-#import "GLView.h"
-#import "MainMenuView.h"
+#import "GLESGameState.h"
 
 BOOL isGameCenterAvailable() {
     // Check for presence of GKLocalPlayer API.
@@ -165,14 +161,8 @@ BOOL isGameCenterAvailable() {
     if (isGameCenterAvailable()) {
         gameCenterAvailable = TRUE;
     }
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPAD_WIDTH, IPAD_HEIGHT)];
-    } else {
-        mainMenu = [[MainMenuView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, IPHONE_HEIGHT)];
-    }
 
-    viewController.view = mainMenu;
-    [viewController viewDidLoad];
+    [viewController customInit];
 
 	//now set our view as visible
     [window addSubview:viewController.view];
@@ -327,7 +317,6 @@ BOOL isGameCenterAvailable() {
 
 
 - (void)dealloc {
-    [mainMenu release];
     [viewController release];
     [window release];
     [super dealloc];
