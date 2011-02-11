@@ -32,14 +32,14 @@
 
 + (NSData *) dataWithUncompressedContentsOfFile:(NSString *)aFile {
 
-	NSData * result;
+    NSData * result;
 
-	if ([[aFile pathExtension] isEqualToString:@"gz"]) {
-		NSData * compressedData = [NSData dataWithContentsOfFile:aFile];
-		result = [compressedData gzipInflate];
-	}
-	else
-		result = [NSData dataWithContentsOfFile:aFile];
+    if ([[aFile pathExtension] isEqualToString:@"gz"]) {
+        NSData * compressedData = [NSData dataWithContentsOfFile:aFile];
+        result = [compressedData gzipInflate];
+    }
+    else
+        result = [NSData dataWithContentsOfFile:aFile];
 
     return result;
 }
@@ -61,10 +61,10 @@
 // ================================================================================================
 
 static char encodingTable[64] = {
-	'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
-	'Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f',
-	'g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v',
-	'w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/' };
+    'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P',
+    'Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f',
+    'g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v',
+    'w','x','y','z','0','1','2','3','4','5','6','7','8','9','+','/' };
 
 
 + (NSData *) dataWithBase64EncodedString:(NSString *) string {
@@ -218,86 +218,86 @@ static char encodingTable[64] = {
 
 - (NSData *)gzipDeflate
 {
-	if ([self length] == 0) return self;
+    if ([self length] == 0) return self;
 
-	z_stream strm;
+    z_stream strm;
 
-	strm.zalloc = Z_NULL;
-	strm.zfree = Z_NULL;
-	strm.opaque = Z_NULL;
-	strm.total_out = 0;
-	strm.next_in=(Bytef *)[self bytes];
-	strm.avail_in = [self length];
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+    strm.total_out = 0;
+    strm.next_in=(Bytef *)[self bytes];
+    strm.avail_in = [self length];
 
-	// Compresssion Levels:
-	//   Z_NO_COMPRESSION
-	//   Z_BEST_SPEED
-	//   Z_BEST_COMPRESSION
-	//   Z_DEFAULT_COMPRESSION
+    // Compresssion Levels:
+    //   Z_NO_COMPRESSION
+    //   Z_BEST_SPEED
+    //   Z_BEST_COMPRESSION
+    //   Z_DEFAULT_COMPRESSION
 
-	if (deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, (15+16), 8, Z_DEFAULT_STRATEGY) != Z_OK) return nil;
+    if (deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, (15+16), 8, Z_DEFAULT_STRATEGY) != Z_OK) return nil;
 
-	NSMutableData *compressed = [NSMutableData dataWithLength:16384];  // 16K chunks for expansion
+    NSMutableData *compressed = [NSMutableData dataWithLength:16384];  // 16K chunks for expansion
 
-	do {
+    do {
 
-		if (strm.total_out >= [compressed length])
-			[compressed increaseLengthBy: 16384];
+        if (strm.total_out >= [compressed length])
+            [compressed increaseLengthBy: 16384];
 
-		strm.next_out = [compressed mutableBytes] + strm.total_out;
-		strm.avail_out = [compressed length] - strm.total_out;
+        strm.next_out = [compressed mutableBytes] + strm.total_out;
+        strm.avail_out = [compressed length] - strm.total_out;
 
-		deflate(&strm, Z_FINISH);
+        deflate(&strm, Z_FINISH);
 
-	} while (strm.avail_out == 0);
+    } while (strm.avail_out == 0);
 
-	deflateEnd(&strm);
+    deflateEnd(&strm);
 
-	[compressed setLength: strm.total_out];
-	return [NSData dataWithData:compressed];
+    [compressed setLength: strm.total_out];
+    return [NSData dataWithData:compressed];
 }
 
 - (NSData *)gzipInflate
 {
-	if ([self length] == 0) return self;
+    if ([self length] == 0) return self;
 
-	unsigned full_length = [self length];
-	unsigned half_length = [self length] / 2;
+    unsigned full_length = [self length];
+    unsigned half_length = [self length] / 2;
 
-	NSMutableData *decompressed = [NSMutableData dataWithLength: full_length + half_length];
-	BOOL done = NO;
-	int status;
+    NSMutableData *decompressed = [NSMutableData dataWithLength: full_length + half_length];
+    BOOL done = NO;
+    int status;
 
-	z_stream strm;
-	strm.next_in = (Bytef *)[self bytes];
-	strm.avail_in = [self length];
-	strm.total_out = 0;
-	strm.zalloc = Z_NULL;
-	strm.zfree = Z_NULL;
+    z_stream strm;
+    strm.next_in = (Bytef *)[self bytes];
+    strm.avail_in = [self length];
+    strm.total_out = 0;
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
 
-	if (inflateInit2(&strm, (15+32)) != Z_OK) return nil;
-	while (!done)
-	{
-		// Make sure we have enough room and reset the lengths.
-		if (strm.total_out >= [decompressed length])
-			[decompressed increaseLengthBy: half_length];
-		strm.next_out = [decompressed mutableBytes] + strm.total_out;
-		strm.avail_out = [decompressed length] - strm.total_out;
+    if (inflateInit2(&strm, (15+32)) != Z_OK) return nil;
+    while (!done)
+    {
+        // Make sure we have enough room and reset the lengths.
+        if (strm.total_out >= [decompressed length])
+            [decompressed increaseLengthBy: half_length];
+        strm.next_out = [decompressed mutableBytes] + strm.total_out;
+        strm.avail_out = [decompressed length] - strm.total_out;
 
-		// Inflate another chunk.
-		status = inflate (&strm, Z_SYNC_FLUSH);
-		if (status == Z_STREAM_END) done = YES;
-		else if (status != Z_OK) break;
-	}
-	if (inflateEnd (&strm) != Z_OK) return nil;
+        // Inflate another chunk.
+        status = inflate (&strm, Z_SYNC_FLUSH);
+        if (status == Z_STREAM_END) done = YES;
+        else if (status != Z_OK) break;
+    }
+    if (inflateEnd (&strm) != Z_OK) return nil;
 
-	// Set real length.
-	if (done)
-	{
-		[decompressed setLength: strm.total_out];
-		return [NSData dataWithData: decompressed];
-	}
-	else return nil;
+    // Set real length.
+    if (done)
+    {
+        [decompressed setLength: strm.total_out];
+        return [NSData dataWithData: decompressed];
+    }
+    else return nil;
 }
 
 @end

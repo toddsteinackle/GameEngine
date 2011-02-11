@@ -26,16 +26,16 @@
     ImageRenderManager *sharedImageRenderManager;
 
     Image *myImage;
-	Image *myImage1;
-	Image *myImage2;
+    Image *myImage1;
+    Image *myImage2;
 
-	SpriteSheet *spriteSheet;
-	PackedSpriteSheet *packedSpriteSheet;
-	Animation *ghostAnim;
-	Animation *playerAnim;
-	BitmapFont *font;
+    SpriteSheet *spriteSheet;
+    PackedSpriteSheet *packedSpriteSheet;
+    Animation *ghostAnim;
+    Animation *playerAnim;
+    BitmapFont *font;
 
-	float scaleAmount;
+    float scaleAmount;
 
     ParticleEmitter *pe;
 

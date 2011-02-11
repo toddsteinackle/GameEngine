@@ -17,12 +17,12 @@
 
     GameEngineAppDelegate *appDelegate;
     SoundManager *sharedSoundManager;
-	Image *image;
-	SpriteSheet *spriteSheet;
+    Image *image;
+    SpriteSheet *spriteSheet;
     Animation *animation;
-	CGPoint pixelLocation;
-	ParticleEmitter *dyingEmitter;
-	ParticleEmitter *appearingEmitter;
+    CGPoint pixelLocation;
+    ParticleEmitter *dyingEmitter;
+    ParticleEmitter *appearingEmitter;
     int state;
 
     CGFloat dx, dy;

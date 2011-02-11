@@ -29,8 +29,7 @@
 @synthesize middleY;
 
 - (void)dealloc {
-    [animation release];
-	[super dealloc];
+    [super dealloc];
 }
 
 #pragma mark -
@@ -38,13 +37,13 @@
 
 - (id)initWithPixelLocation:(CGPoint)aLocation {
     self = [super init];
-	if (self != nil) {
-		sharedSoundManager = [SoundManager sharedSoundManager];
+    if (self != nil) {
+        sharedSoundManager = [SoundManager sharedSoundManager];
         appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
         pixelLocation.x = aLocation.x;
         pixelLocation.y - aLocation.y;
-	}
-	return self;
+    }
+    return self;
 }
 
 #pragma mark -
@@ -58,13 +57,13 @@
 - (void)render {
 // Debug code that allows us to draw bounding boxes for the entity
 #ifdef SCB
-		// Draw the collision bounds in green
-		glColor4f(0, 1, 0, 1);
-		drawBox([self collisionBounds]);
+        // Draw the collision bounds in green
+        glColor4f(0, 1, 0, 1);
+        drawBox([self collisionBounds]);
 
-		// Draw the movement bounds in blue
-		glColor4f(0, 0, 1, 1);
-		drawBox([self movementBounds]);
+        // Draw the movement bounds in blue
+        glColor4f(0, 0, 1, 1);
+        drawBox([self movementBounds]);
 #endif
 }
 

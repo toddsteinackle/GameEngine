@@ -21,16 +21,16 @@ enum {
 //
 @interface Animation : NSObject {
 
-    NSUInteger state;	    // State of the animationx
-    NSUInteger type;		// Type of animation i.e. repeating, ping pong or once
+    NSUInteger state;       // State of the animationx
+    NSUInteger type;        // Type of animation i.e. repeating, ping pong or once
     NSInteger direction;    // Direction in which the animation is running
     NSUInteger maxFrames;   // Maximum allowed frames in this animation
     NSInteger currentFrame; // Current frame of the animation
     AnimationFrame *frames; // Array of frames for this animation
-    float displayTime;		// Accumulates the time while a frame is displayed
+    float displayTime;      // Accumulates the time while a frame is displayed
     NSInteger frameCount;   // Total frames within the animation
-	NSUInteger bounceFrame;	// Frame at which animation should repeat or pingpong rather than when it
-							// hits the last frame or first frame
+    NSUInteger bounceFrame; // Frame at which animation should repeat or pingpong rather than when it
+                            // hits the last frame or first frame
 
 }
 

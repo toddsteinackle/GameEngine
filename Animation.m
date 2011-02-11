@@ -16,30 +16,30 @@
 
 - (void)dealloc {
 
-	// Loop through the frames array and release all the frames which we have
-	if (frames) {
-		for(int i=0; i<frameCount; i++) {
-			AnimationFrame *frame = &frames[i];
-			[frame->image release];
-		}
-		free(frames);
-	}
+    // Loop through the frames array and release all the frames which we have
+    if (frames) {
+        for(int i=0; i<frameCount; i++) {
+            AnimationFrame *frame = &frames[i];
+            [frame->image release];
+        }
+        free(frames);
+    }
     [super dealloc];
 }
 
 - (id)init {
     self = [super init];
     if(self != nil) {
-		// Init the animations properties
+        // Init the animations properties
         maxFrames = 5;
         frameCount = 0;
         currentFrame = 0;
         state = kAnimationState_Stopped;
         type = kAnimationType_Once;
         direction = 1;
-		bounceFrame = -1;
+        bounceFrame = -1;
 
-		// Initialize the array that will store the animation frames
+        // Initialize the array that will store the animation frames
         frames = calloc(maxFrames, sizeof(AnimationFrame));
 
     }
@@ -53,14 +53,14 @@
     // If we try to add more frames than we have storage for then increase the storage
     if(frameCount+1 > maxFrames) {
         maxFrames += FRAMES_TO_EXTEND;
-		frames = realloc(frames, sizeof(AnimationFrame) * maxFrames);
+        frames = realloc(frames, sizeof(AnimationFrame) * maxFrames);
     }
 
     // Set the image and delay based on the arguments passed in
     frames[frameCount].image = [aImage retain];
     frames[frameCount].delay = aDelay;
 
-	frameCount++;
+    frameCount++;
 
 }
 
@@ -77,10 +77,10 @@
     if(displayTime > frames[currentFrame].delay) {
         currentFrame += direction;
 
-		// Rather than set displayTime back to 0, we set it to the difference between the
-		// displayTime and frames delay. This will cause frames to be skipped as necessary
-		// if the game should bog down
-		displayTime = displayTime - frames[currentFrame].delay;
+        // Rather than set displayTime back to 0, we set it to the difference between the
+        // displayTime and frames delay. This will cause frames to be skipped as necessary
+        // if the game should bog down
+        displayTime = displayTime - frames[currentFrame].delay;
 
         // If we have reached the end or start of the animation, decide on what needs to be
         // done based on the animations type
@@ -88,11 +88,11 @@
             direction = -direction;
         } else if (currentFrame > frameCount-1 || currentFrame == bounceFrame) {
             if (type != kAnimationType_Repeating) {
-				currentFrame -= 1;
+                currentFrame -= 1;
                 state = kAnimationState_Stopped;
-			} else {
-				currentFrame = 0;
-			}
+            } else {
+                currentFrame = 0;
+            }
         }
     }
 }

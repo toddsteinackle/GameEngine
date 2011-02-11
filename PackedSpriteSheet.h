@@ -12,9 +12,9 @@
 //
 @interface PackedSpriteSheet : NSObject {
 
-	Image *image;						// Packed Spritesheet Image
-	NSMutableDictionary *sprites;		// Dictionary that contains the sprites found in the packed sprite sheet
-	NSDictionary *controlFile;			// Dictionary created from the control file for the packed sprite sheet
+    Image *image;                       // Packed Spritesheet Image
+    NSMutableDictionary *sprites;       // Dictionary that contains the sprites found in the packed sprite sheet
+    NSDictionary *controlFile;          // Dictionary created from the control file for the packed sprite sheet
 
 }
 

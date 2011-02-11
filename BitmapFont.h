@@ -9,29 +9,29 @@
 
 // Structure used to store information on each character in the font being used
 typedef struct _BitmapFontChar {
-	int charID;
-	int x;
-	int y;
-	int width;
-	int height;
-	int xOffset;
-	int yOffset;
-	int xAdvance;
-	Image *image;
-	float scale;
+    int charID;
+    int x;
+    int y;
+    int width;
+    int height;
+    int xOffset;
+    int yOffset;
+    int xAdvance;
+    Image *image;
+    float scale;
 } BitmapFontChar;
 
 // Enumerators used to define what type of justification should be used when rendering in a frame
 enum {
-	BitmapFontJustification_TopCentered,
-	BitmapFontJustification_MiddleCentered,
-	BitmapFontJustification_BottomCentered,
-	BitmapFontJustification_TopRight,
-	BitmapFontJustification_MiddleRight,
-	BitmapFontJustification_BottomRight,
-	BitmapFontJustification_TopLeft,
-	BitmapFontJustification_MiddleLeft,
-	BitmapFontJustification_BottomLeft
+    BitmapFontJustification_TopCentered,
+    BitmapFontJustification_MiddleCentered,
+    BitmapFontJustification_BottomCentered,
+    BitmapFontJustification_TopRight,
+    BitmapFontJustification_MiddleRight,
+    BitmapFontJustification_BottomRight,
+    BitmapFontJustification_TopLeft,
+    BitmapFontJustification_MiddleLeft,
+    BitmapFontJustification_BottomLeft
 };
 
 // Whilst looking for how to render Bitmap Fonts I found this page http://www.angelcode.com/products/bmfont/
@@ -52,10 +52,10 @@ enum {
 //
 @interface BitmapFont : NSObject {
 
-	Image *image;							// Image file that contains the fonts spritesheet
-    BitmapFontChar *charsArray;				// Array of BitmapFontChar objects that will hold all the define font characters
-    int lineHeight;						// The common line height of the entire font found in the control file
-	Color4f fontColor;						// The color to be used when rendering this font.  This can be changed at any time
+    Image *image;                           // Image file that contains the fonts spritesheet
+    BitmapFontChar *charsArray;             // Array of BitmapFontChar objects that will hold all the define font characters
+    int lineHeight;                     // The common line height of the entire font found in the control file
+    Color4f fontColor;                      // The color to be used when rendering this font.  This can be changed at any time
 }
 
 @property(nonatomic, retain) Image *image;

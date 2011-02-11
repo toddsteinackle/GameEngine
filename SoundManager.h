@@ -13,48 +13,48 @@
 //
 @interface SoundManager : NSObject <AVAudioPlayerDelegate, AVAudioSessionDelegate> {
 
-	//////////////////// Sound Setup
-	ALCcontext *context;				// Context in which all sounds will be played
-	ALCdevice *device;					// Reference to the device to use when playing sounds
-    ALenum alError;						// Any OpenAL errors that are rasied
-	CGPoint listenerPosition;			// Location of the OpenAL Listener
-	NSString *soundCategory;			// The sound category to be used by the sound manager
-	NSMutableArray *soundSources;		// Mutable array of all sound sources
-	AVAudioSession *audioSession;		// Reference to an audio session
-	NSError *audioSessionError;			// Audiosession errors are placed in this ivar
+    //////////////////// Sound Setup
+    ALCcontext *context;                // Context in which all sounds will be played
+    ALCdevice *device;                  // Reference to the device to use when playing sounds
+    ALenum alError;                     // Any OpenAL errors that are rasied
+    CGPoint listenerPosition;           // Location of the OpenAL Listener
+    NSString *soundCategory;            // The sound category to be used by the sound manager
+    NSMutableArray *soundSources;       // Mutable array of all sound sources
+    AVAudioSession *audioSession;       // Reference to an audio session
+    NSError *audioSessionError;         // Audiosession errors are placed in this ivar
 
-	//////////////////// Sound dicionaries
-	NSMutableDictionary *soundLibrary;		// Dictionary of all sounds loaded and their keys
-	NSMutableDictionary *musicLibrary;		// Dictionary of all music/ambient sounds loaded and their keys
-	NSMutableDictionary *musicPlaylists;	// Dictionary of playlists
-	NSMutableArray *currentPlaylistTracks;	// Array of tracks for the current play list
+    //////////////////// Sound dicionaries
+    NSMutableDictionary *soundLibrary;      // Dictionary of all sounds loaded and their keys
+    NSMutableDictionary *musicLibrary;      // Dictionary of all music/ambient sounds loaded and their keys
+    NSMutableDictionary *musicPlaylists;    // Dictionary of playlists
+    NSMutableArray *currentPlaylistTracks;  // Array of tracks for the current play list
 
-	//////////////////// Music
-	AVAudioPlayer *musicPlayer;			// AVAudioPlayer instance for the music
+    //////////////////// Music
+    AVAudioPlayer *musicPlayer;         // AVAudioPlayer instance for the music
 
-	//////////////////// Volume
-	float currentMusicVolume;			// Volume of music/ambient sounds played through AVAudioPlayer
-	float fxVolume;					// Volume of OpenAL sound effects
-	float musicVolume;					// The master music volume.  This value is not affected by fading music
+    //////////////////// Volume
+    float currentMusicVolume;           // Volume of music/ambient sounds played through AVAudioPlayer
+    float fxVolume;                 // Volume of OpenAL sound effects
+    float musicVolume;                  // The master music volume.  This value is not affected by fading music
 
-	//////////////////// Fading sound
-	NSTimer *timer;						// Timer used fade the music volume up or down
-	float fadeAmount;					// Amount the volume should be faded each timer call
-	float fadeDuration;					// The amount of time the fade has been running
-	float targetFadeDuration;			// The duration the current fade should run for
+    //////////////////// Fading sound
+    NSTimer *timer;                     // Timer used fade the music volume up or down
+    float fadeAmount;                   // Amount the volume should be faded each timer call
+    float fadeDuration;                 // The amount of time the fade has been running
+    float targetFadeDuration;           // The duration the current fade should run for
 
-	//////////////////// Flags
-	BOOL isExternalAudioPlaying;		// YES if music was playing before the sound engine was initialized i.e.
-	BOOL isFading;						// YES if the sound manager is currently fading music
-	BOOL isMusicPlaying;				// YES if music is currently playing
-	BOOL stopMusicAfterFade;			// YES if music is to be stopped once fading has finished
-	BOOL usePlaylist;					// YES if tracks in the playlist should be played one after the other
-	BOOL loopPlaylist;					// YES if the playlist should loop when it reaches the end
-	BOOL loopLastPlaylistTrack;			// YES if you want the last track of the playlist to be looped forever
+    //////////////////// Flags
+    BOOL isExternalAudioPlaying;        // YES if music was playing before the sound engine was initialized i.e.
+    BOOL isFading;                      // YES if the sound manager is currently fading music
+    BOOL isMusicPlaying;                // YES if music is currently playing
+    BOOL stopMusicAfterFade;            // YES if music is to be stopped once fading has finished
+    BOOL usePlaylist;                   // YES if tracks in the playlist should be played one after the other
+    BOOL loopPlaylist;                  // YES if the playlist should loop when it reaches the end
+    BOOL loopLastPlaylistTrack;         // YES if you want the last track of the playlist to be looped forever
 
-	//////////////////// Playlist tracking
-	int playlistIndex;					// Current index being played in the playlist
-	NSString *currentPlaylistName;		// Holds the name of the currently playing play list
+    //////////////////// Playlist tracking
+    int playlistIndex;                  // Current index being played in the playlist
+    NSString *currentPlaylistName;      // Holds the name of the currently playing play list
 
 }
 

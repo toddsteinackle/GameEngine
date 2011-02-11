@@ -22,8 +22,8 @@
     appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     sceneState = 3;
-	if (self = [super initWithFrame:frame]){
-		//do initialization here.
+    if (self = [super initWithFrame:frame]){
+        //do initialization here.
         switch (sceneState) {
             case 1:
                 sharedImageRenderManager = [ImageRenderManager sharedImageRenderManager];
@@ -148,8 +148,8 @@
                 break;
         }
 
-	}
-	return self;
+    }
+    return self;
 }
 
 -(void) renderScene {
@@ -240,13 +240,13 @@
 }
 
 -(void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-	UITouch* touch = [touches anyObject];
+    UITouch* touch = [touches anyObject];
     CGPoint loc = [touch locationInView:self];
     NSLog(@"x -- %f y -- %f", loc.x, loc.y);
-	NSUInteger numTaps = [touch tapCount];
-	if( numTaps > 1 ) {
+    NSUInteger numTaps = [touch tapCount];
+    if( numTaps > 1 ) {
         [self.viewController showPauseView];
-	}
+    }
 }
 
 @end

@@ -14,7 +14,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
-		self.userInteractionEnabled = true;
+        self.userInteractionEnabled = true;
     }
     return self;
 }

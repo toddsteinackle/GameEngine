@@ -5,10 +5,10 @@
 
 // Enumerators for the different pixel formats this class can handle
 typedef enum {
-	kTexture2DPixelFormat_Automatic = 0,
-	kTexture2DPixelFormat_RGBA8888,
-	kTexture2DPixelFormat_RGB565,
-	kTexture2DPixelFormat_A8,
+    kTexture2DPixelFormat_Automatic = 0,
+    kTexture2DPixelFormat_RGBA8888,
+    kTexture2DPixelFormat_RGB565,
+    kTexture2DPixelFormat_A8,
 } Texture2DPixelFormat;
 
 // The Texture2D class allows any image to be converted into an OpenGL texture.  As
@@ -32,14 +32,14 @@ typedef enum {
 
 @private
 
-	GLuint name;			// Holds the OpenGL name generated for this texture
-	CGSize contentSize;		// Stores the actual size of the image being loaded as a texture
-	NSUInteger width;		// The actual width and height of the texture once it has been adjusted to be
-	NSUInteger height;		// power of 2 compliant
-	GLfloat	maxS;			// Maximum texture coordinates for the image that has been placed inside our texture.
-	GLfloat	maxT;
-    CGSize textureRatio;	// The ratio between pixels and texels (texture coordinates)
-    Texture2DPixelFormat pixelFormat;	// The pixel format of the image that has been loaded
+    GLuint name;            // Holds the OpenGL name generated for this texture
+    CGSize contentSize;     // Stores the actual size of the image being loaded as a texture
+    NSUInteger width;       // The actual width and height of the texture once it has been adjusted to be
+    NSUInteger height;      // power of 2 compliant
+    GLfloat maxS;           // Maximum texture coordinates for the image that has been placed inside our texture.
+    GLfloat maxT;
+    CGSize textureRatio;    // The ratio between pixels and texels (texture coordinates)
+    Texture2DPixelFormat pixelFormat;   // The pixel format of the image that has been loaded
 }
 
 @property(nonatomic, readonly) GLuint name;

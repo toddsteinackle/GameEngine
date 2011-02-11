@@ -44,37 +44,37 @@
 //  Structures
 // ================================================================================================
 typedef struct _TBXMLAttribute {
-	char * name;
-	char * value;
-	struct _TBXMLAttribute * next;
+    char * name;
+    char * value;
+    struct _TBXMLAttribute * next;
 } TBXMLAttribute;
 
 typedef struct _TBXMLElement {
-	char * name;
-	char * text;
+    char * name;
+    char * text;
 
-	TBXMLAttribute * firstAttribute;
+    TBXMLAttribute * firstAttribute;
 
-	struct _TBXMLElement * parentElement;
+    struct _TBXMLElement * parentElement;
 
-	struct _TBXMLElement * firstChild;
-	struct _TBXMLElement * currentChild;
+    struct _TBXMLElement * firstChild;
+    struct _TBXMLElement * currentChild;
 
-	struct _TBXMLElement * nextSibling;
-	struct _TBXMLElement * previousSibling;
+    struct _TBXMLElement * nextSibling;
+    struct _TBXMLElement * previousSibling;
 
 } TBXMLElement;
 
 typedef struct _TBXMLElementBuffer {
-	TBXMLElement * elements;
-	struct _TBXMLElementBuffer * next;
-	struct _TBXMLElementBuffer * previous;
+    TBXMLElement * elements;
+    struct _TBXMLElementBuffer * next;
+    struct _TBXMLElementBuffer * previous;
 } TBXMLElementBuffer;
 
 typedef struct _TBXMLAttributeBuffer {
-	TBXMLAttribute * attributes;
-	struct _TBXMLAttributeBuffer * next;
-	struct _TBXMLAttributeBuffer * previous;
+    TBXMLAttribute * attributes;
+    struct _TBXMLAttributeBuffer * next;
+    struct _TBXMLAttributeBuffer * previous;
 } TBXMLAttributeBuffer;
 
 // ================================================================================================
@@ -83,16 +83,16 @@ typedef struct _TBXMLAttributeBuffer {
 @interface TBXML : NSObject {
 
 @private
-	TBXMLElement * rootXMLElement;
+    TBXMLElement * rootXMLElement;
 
-	TBXMLElementBuffer * currentElementBuffer;
-	TBXMLAttributeBuffer * currentAttributeBuffer;
+    TBXMLElementBuffer * currentElementBuffer;
+    TBXMLAttributeBuffer * currentAttributeBuffer;
 
-	long currentElement;
-	long currentAttribute;
+    long currentElement;
+    long currentAttribute;
 
-	char * bytes;
-	long bytesLength;
+    char * bytes;
+    long bytesLength;
 }
 
 @property (nonatomic, readonly) TBXMLElement * rootXMLElement;

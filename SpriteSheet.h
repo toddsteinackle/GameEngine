@@ -16,13 +16,13 @@
 //
 @interface SpriteSheet : NSObject {
 
-    Image *image;					// Image which is being used for this spritesheet
-    CGSize spriteSize;				// Size of each image (sprite) within this sprite sheet
-    NSUInteger spacing;				// Spacing between each sprite
-	NSUInteger margin;				// Margin
+    Image *image;                   // Image which is being used for this spritesheet
+    CGSize spriteSize;              // Size of each image (sprite) within this sprite sheet
+    NSUInteger spacing;             // Spacing between each sprite
+    NSUInteger margin;              // Margin
     NSUInteger horizSpriteCount;    // Number of sprites horizontally within this sprite sheet
-    NSUInteger vertSpriteCount;		// Number of sprites vertically within this sprite sheet
-	NSMutableArray *cachedSprites;  // Array that holds the cached sprite images
+    NSUInteger vertSpriteCount;     // Number of sprites vertically within this sprite sheet
+    NSMutableArray *cachedSprites;  // Array that holds the cached sprite images
 
 }
 
@@ -37,13 +37,13 @@
 // This class should be used to get a sprite sheet rather than the initializer if you want to make use of
 // the cached sprite sheets
 + (SpriteSheet*)spriteSheetForImageNamed:(NSString*)aImageName spriteSize:(CGSize)aSpriteSize spacing:(NSUInteger)aSpacing
-								  margin:(NSUInteger)aMargin imageFilter:(GLenum)aFilter;
+                                  margin:(NSUInteger)aMargin imageFilter:(GLenum)aFilter;
 
 // Class method that allows us to cache sprite sheets that are created by providing an image instance.
 // This class should be used to get a sprite sheet rather than the initializer if you want to make use of
 // the cached sprite sheets
 + (SpriteSheet*)spriteSheetForImage:(Image*)aImage sheetKey:(NSString*)aSheetKey spriteSize:(CGSize)aSpriteSize
-							spacing:(NSUInteger)aSpacing margin:(NSUInteger)aMargin;
+                            spacing:(NSUInteger)aSpacing margin:(NSUInteger)aMargin;
 
 // Class method used to remove a cached sprite sheet with the provided key
 + (BOOL)removeCachedSpriteSheetWithKey:(NSString*)aKey;

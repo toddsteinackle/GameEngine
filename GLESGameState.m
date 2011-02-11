@@ -22,14 +22,14 @@
 }
 
 - (void)layoutSubviews {
-	[renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
+    [renderer resizeFromLayer:(CAEAGLLayer*)self.layer];
     [self drawView:nil];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
-		// Get the layer
+        // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
 
         eaglLayer.opaque = TRUE;

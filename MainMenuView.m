@@ -8,24 +8,24 @@
 @implementation MainMenuView
 
 - (MainMenuView*)initWithFrame:(CGRect)frame {
-	if(self = [super initWithFrame:frame]) {
-		//load the .xib file here.
-		//this will instantiate the 'subview' uiview.
+    if(self = [super initWithFrame:frame]) {
+        //load the .xib file here.
+        //this will instantiate the 'subview' uiview.
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [[NSBundle mainBundle] loadNibNamed:@"MainMenuView-iPad" owner:self options:nil];
         } else {
             [[NSBundle mainBundle] loadNibNamed:@"MainMenuView" owner:self options:nil];
         }
 
-		//add subview as... a subview.
-		//this will let everything from the nib file show up on screen.
-		[self addSubview:subview];
+        //add subview as... a subview.
+        //this will let everything from the nib file show up on screen.
+        [self addSubview:subview];
         appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
         if (!appDelegate.gameCenterAvailable) {
             leaderboardButton.hidden = TRUE;
         }
-	}
-	return self;
+    }
+    return self;
 }
 
 - (IBAction)doGraphicsTest {

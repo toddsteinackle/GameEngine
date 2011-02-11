@@ -12,7 +12,7 @@
 // The filename of the texture is used as the key within this class.
 //
 @interface TextureManager : NSObject {
-    NSMutableDictionary *cachedTextures;	// A dictionary of all textures that are currently in use
+    NSMutableDictionary *cachedTextures;    // A dictionary of all textures that are currently in use
 }
 
 + (TextureManager *)sharedTextureManager;

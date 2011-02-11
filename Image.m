@@ -57,14 +57,14 @@
     NSLog(@"INFO - Image: Deallocating image '%@.%@'", imageFileName, imageFileType);
 #endif
 
-	if (texture)
-		[texture release];
+    if (texture)
+        [texture release];
 
-	if (imageDetails) {
-		if (imageDetails->texturedColoredQuad)
-			free(imageDetails->texturedColoredQuad);
-		free(imageDetails);
-	}
+    if (imageDetails) {
+        if (imageDetails->texturedColoredQuad)
+            free(imageDetails->texturedColoredQuad);
+        free(imageDetails);
+    }
     [super dealloc];
 }
 
@@ -74,14 +74,14 @@
 - (id)initWithImageNamed:(NSString*)aName filter:(GLenum)aFilter {
 
     self = [super init];
-	if (self != nil) {
+    if (self != nil) {
         // Initialize the common properties for this image
         [self initializeImage:aName filter:aFilter];
 
         // Set the width and height of the image to be the full width and hight of the image
         // within the texture
         imageSize = texture.contentSize;
-		originalImageSize = imageSize;
+        originalImageSize = imageSize;
 
         // Get the texture width and height which is to be used.  For an image which is not using
         // a sub region of a texture then these values are the maximum width and height values from
@@ -95,23 +95,23 @@
         // Init the images imageDetails structure
         [self initializeImageDetails];
     }
-	return self;
+    return self;
 }
 
 - (id)initWithImageNamed:(NSString*)aName filter:(GLenum)aFilter subTexture:(CGRect)aSubTexture {
 
     self = [super init];
-	if (self != nil) {
-		// Save the sub textures rectangle
-		subImageRectangle = aSubTexture;
+    if (self != nil) {
+        // Save the sub textures rectangle
+        subImageRectangle = aSubTexture;
 
-		// Initialize the common properties for this image
+        // Initialize the common properties for this image
         [self initializeImage:aName filter:aFilter];
 
         // Set the width and height of the image that has been passed into in.  This is defining a
         // sub region within the larger texture.
         imageSize = aSubTexture.size;
-		originalImageSize = imageSize;
+        originalImageSize = imageSize;
 
         // Calculate the point within the texture from where the texture sub region will be started
         textureOffset.x = textureRatio.width * aSubTexture.origin.x;
@@ -124,7 +124,7 @@
         // Init the images imageDetails structure
         [self initializeImageDetails];
     }
-	return self;
+    return self;
 }
 
 #pragma mark -
@@ -137,38 +137,38 @@
     subImage.color = color;
     subImage.flipVertically = flipVertically;
     subImage.flipHorizontally = flipHorizontally;
-	subImage.rotation = rotation;
-	subImage.rotationPoint = rotationPoint;
+    subImage.rotation = rotation;
+    subImage.rotationPoint = rotationPoint;
     return [subImage autorelease];
 }
 
 - (Image*)imageDuplicate {
-	Image *imageCopy = [[self subImageInRect:subImageRectangle] retain];
-	return [imageCopy autorelease];
+    Image *imageCopy = [[self subImageInRect:subImageRectangle] retain];
+    return [imageCopy autorelease];
 }
 
 - (void)setImageSizeToRender:(CGSize)aImageSize {
 
-	// If the width or height passed in is < 0 or > 100 then log an error
-	if (aImageSize.width < 0 || aImageSize.width > 100 || aImageSize.height < 0 || aImageSize.height > 100) {
+    // If the width or height passed in is < 0 or > 100 then log an error
+    if (aImageSize.width < 0 || aImageSize.width > 100 || aImageSize.height < 0 || aImageSize.height > 100) {
 #ifdef GAMEENGINE_DEBUG
         NSLog(@"ERROR - Image: Illegal % provided to setImageSizeToRender 'width=%f, height=%f'", aImageSize.width, aImageSize.height);
 #endif
-		return;
-	}
+        return;
+    }
 
-	// Using the original size of this image, calculate the new image width based on the
-	// percentage provided
-	imageSize.width = (originalImageSize.width / 100) * aImageSize.width;
-	imageSize.height = (originalImageSize.height / 100) * aImageSize.height;
+    // Using the original size of this image, calculate the new image width based on the
+    // percentage provided
+    imageSize.width = (originalImageSize.width / 100) * aImageSize.width;
+    imageSize.height = (originalImageSize.height / 100) * aImageSize.height;
 
-	// Calculate the width and height of the sub region this image is going to use.
-	textureSize.width = (textureRatio.width * imageSize.width) + textureOffset.x;
-	textureSize.height = (textureRatio.height * imageSize.height) + textureOffset.y;
+    // Calculate the width and height of the sub region this image is going to use.
+    textureSize.width = (textureRatio.width * imageSize.width) + textureOffset.x;
+    textureSize.height = (textureRatio.height * imageSize.height) + textureOffset.y;
 
-	// Initialize the image details.  This will recalculate the images geometry and texture
-	// coordinates in the imageDetails structure.
-	[self initializeImageDetails];
+    // Initialize the image details.  This will recalculate the images geometry and texture
+    // coordinates in the imageDetails structure.
+    [self initializeImageDetails];
 }
 
 #pragma mark -
@@ -223,18 +223,18 @@
 
 - (void)render {
 
-	// Update the color of the image before it gets copied to the render manager
-	imageDetails->texturedColoredQuad->vertex1.vertexColor =
-	imageDetails->texturedColoredQuad->vertex2.vertexColor =
-	imageDetails->texturedColoredQuad->vertex3.vertexColor =
-	imageDetails->texturedColoredQuad->vertex4.vertexColor = color;
+    // Update the color of the image before it gets copied to the render manager
+    imageDetails->texturedColoredQuad->vertex1.vertexColor =
+    imageDetails->texturedColoredQuad->vertex2.vertexColor =
+    imageDetails->texturedColoredQuad->vertex3.vertexColor =
+    imageDetails->texturedColoredQuad->vertex4.vertexColor = color;
 
-	// Add this image to the render queue.  This will cause this image to be rendered the next time
+    // Add this image to the render queue.  This will cause this image to be rendered the next time
     // the renderManager is asked to render.  It also copies the data over to the image renderer
     // IVA.  It is this data that is changed next by applying the images matrix
     [sharedImageRenderManager addImageDetailsToRenderQueue:imageDetails];
 
-	// If the images point, scale or rotation are changed, it means we need to adjust the
+    // If the images point, scale or rotation are changed, it means we need to adjust the
     // images matrix and transform the vertices.  If dirty is set we also check to see if it is
     // necessary to adjust the rotation and scale.  If they are 0 then nothing needs to
     // be done and we can save some cycles.
@@ -259,20 +259,20 @@
             translateMatrix(matrix, CGPointMake((-imageSize.width * scale.x), 0));
         }
 
-		// No point in calculating a rotation matrix if there is no rotation been set
+        // No point in calculating a rotation matrix if there is no rotation been set
         if(rotation != 0)
             rotateMatrix(matrix, rotationPoint, rotation);
 
         // No point in calculcating scale if no scale has been set.
-		if(scale.x != 1.0f || scale.y != 1.0f)
+        if(scale.x != 1.0f || scale.y != 1.0f)
             scaleMatrix(matrix, scale);
 
         // Transform the images matrix based on the calculations done above
         transformMatrix(matrix, imageDetails->texturedColoredQuad, imageDetails->texturedColoredQuadIVA);
 
         // Mark the image as now clean
-		dirty = NO;
-	}
+        dirty = NO;
+    }
 }
 
 @end
@@ -288,36 +288,36 @@
     textureManager = [TextureManager sharedTextureManager];
     sharedImageRenderManager = [ImageRenderManager sharedImageRenderManager];
 
-	// Set the image name to the name of the image file used to create the texture.  This is also
+    // Set the image name to the name of the image file used to create the texture.  This is also
     // the key within the texture manager for grabbing a texture from the cache.
     self.imageFileName = aImageName;
 
-	// Create a Texture2D instance using the image file with the specified name.  Retain a
-	// copy as the Texture2D class autoreleases the instance returned.
-	self.texture = [textureManager textureWithFileName:self.imageFileName filter:aFilter];
+    // Create a Texture2D instance using the image file with the specified name.  Retain a
+    // copy as the Texture2D class autoreleases the instance returned.
+    self.texture = [textureManager textureWithFileName:self.imageFileName filter:aFilter];
 
-	// Set the texture name to the OpenGL texture name given to the Texture2D object
-	textureName = texture.name;
+    // Set the texture name to the OpenGL texture name given to the Texture2D object
+    textureName = texture.name;
 
-	// Get the full width and height of the texture.  We could keep accessing the getters of the texture
-	// instance, but keeping our own copy cuts down a little on the messaging
-	fullTextureSize.width = texture.width;
-	fullTextureSize.height = texture.height;
+    // Get the full width and height of the texture.  We could keep accessing the getters of the texture
+    // instance, but keeping our own copy cuts down a little on the messaging
+    fullTextureSize.width = texture.width;
+    fullTextureSize.height = texture.height;
 
-	// Grab the texture width and height ratio from the texture
-	textureRatio.width = texture.textureRatio.width;
-	textureRatio.height = texture.textureRatio.height;
+    // Grab the texture width and height ratio from the texture
+    textureRatio.width = texture.textureRatio.width;
+    textureRatio.height = texture.textureRatio.height;
 
     // Set the default color
     color = Color4fMake(1.0f, 1.0f, 1.0f, 1.0f);
 
-	// Set the default rotation point which is the origin of the image i.e. {0, 0}
+    // Set the default rotation point which is the origin of the image i.e. {0, 0}
     rotationPoint = CGPointZero;
 
     // Set the min/mag filter value
     minMagFilter = aFilter;
 
-	// Initialize properties with default values
+    // Initialize properties with default values
     rotation = 0.0f;
     scale.x = 1.0f;
     scale.y = 1.0f;
@@ -331,10 +331,10 @@
     // about our image.  This structure will never change, but will be used when performing
     // transforms on the image with the results being loaded into the RenderManager using this
     // images render index
-	if (!imageDetails) {
-		imageDetails = calloc(1, sizeof(ImageDetails));
-		imageDetails->texturedColoredQuad = calloc(1, sizeof(TexturedColoredQuad));
-	}
+    if (!imageDetails) {
+        imageDetails = calloc(1, sizeof(ImageDetails));
+        imageDetails->texturedColoredQuad = calloc(1, sizeof(TexturedColoredQuad));
+    }
 
     // Set up the geometry for the image
     imageDetails->texturedColoredQuad->vertex1.geometryVertex = CGPointMake(0.0f, 0.0f);
@@ -367,28 +367,28 @@
 }
 
 - (void)setPoint:(CGPoint)aPoint {
-	point = aPoint;
-	dirty = YES;
+    point = aPoint;
+    dirty = YES;
 }
 
 - (void)setRotation:(float)aRotation {
-	rotation = aRotation;
-	dirty = YES;
+    rotation = aRotation;
+    dirty = YES;
 }
 
 - (void)setScale:(Scale2f)aScale {
     scale = aScale;
-	dirty = YES;
+    dirty = YES;
 }
 
 - (void)setFlipVertically:(BOOL)aFlip {
-	flipVertically = aFlip;
-	dirty = YES;
+    flipVertically = aFlip;
+    dirty = YES;
 }
 
 - (void)setFlipHorizontally:(BOOL)aFlip {
-	flipHorizontally = aFlip;
-	dirty = YES;
+    flipHorizontally = aFlip;
+    dirty = YES;
 }
 
 @end

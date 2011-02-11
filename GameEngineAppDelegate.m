@@ -43,10 +43,10 @@ BOOL isGameCenterAvailable() {
 
 - (void)gameLoop {
 
-	static double lastFrameTime = 0.0f;
-	static double cyclesLeftOver = 0.0f;
-	double currentTime;
-	double updateIterations;
+    static double lastFrameTime = 0.0f;
+    static double cyclesLeftOver = 0.0f;
+    double currentTime;
+    double updateIterations;
 
 #ifdef FRAME_COUNTER
     double currTime = [[NSDate date] timeIntervalSince1970];
@@ -60,25 +60,25 @@ BOOL isGameCenterAvailable() {
     }
 #endif
 
-	// Apple advises to use CACurrentMediaTime() as CFAbsoluteTimeGetCurrent() is synced with the mobile
-	// network time and so could change causing hiccups.
-	currentTime = CACurrentMediaTime();
-	updateIterations = ((currentTime - lastFrameTime) + cyclesLeftOver);
+    // Apple advises to use CACurrentMediaTime() as CFAbsoluteTimeGetCurrent() is synced with the mobile
+    // network time and so could change causing hiccups.
+    currentTime = CACurrentMediaTime();
+    updateIterations = ((currentTime - lastFrameTime) + cyclesLeftOver);
 
-	if(updateIterations > (MAX_CYCLES_PER_FRAME * UPDATE_INTERVAL))
-		updateIterations = (MAX_CYCLES_PER_FRAME * UPDATE_INTERVAL);
+    if(updateIterations > (MAX_CYCLES_PER_FRAME * UPDATE_INTERVAL))
+        updateIterations = (MAX_CYCLES_PER_FRAME * UPDATE_INTERVAL);
 
-	while (updateIterations >= UPDATE_INTERVAL) {
-		updateIterations -= UPDATE_INTERVAL;
+    while (updateIterations >= UPDATE_INTERVAL) {
+        updateIterations -= UPDATE_INTERVAL;
 
-		// Update the game logic passing in the fixed update interval as the delta
+        // Update the game logic passing in the fixed update interval as the delta
         [((GameState*)currentViewController.view) updateSceneWithDelta:UPDATE_INTERVAL];
-	}
+    }
 
-	cyclesLeftOver = updateIterations;
-	lastFrameTime = currentTime;
+    cyclesLeftOver = updateIterations;
+    lastFrameTime = currentTime;
 
-	// Render the scene
+    // Render the scene
     [((GameState*)currentViewController.view) drawView:nil];
 }
 
@@ -87,68 +87,68 @@ BOOL isGameCenterAvailable() {
 }
 
 - (NSInteger)animationFrameInterval {
-	return animationFrameInterval;
+    return animationFrameInterval;
 }
 
 - (void)setAnimationFrameInterval:(NSInteger)frameInterval {
-	// Frame interval defines how many display frames must pass between each time the
-	// display link fires. The display link will only fire 30 times a second when the
-	// frame interval is two on a display that refreshes 60 times a second. The default
-	// frame interval setting of one will fire 60 times a second when the display refreshes
-	// at 60 times a second. A frame interval setting of less than one results in undefined
-	// behavior.
-	if (frameInterval >= 1)
-	{
-		animationFrameInterval = frameInterval;
+    // Frame interval defines how many display frames must pass between each time the
+    // display link fires. The display link will only fire 30 times a second when the
+    // frame interval is two on a display that refreshes 60 times a second. The default
+    // frame interval setting of one will fire 60 times a second when the display refreshes
+    // at 60 times a second. A frame interval setting of less than one results in undefined
+    // behavior.
+    if (frameInterval >= 1)
+    {
+        animationFrameInterval = frameInterval;
 
-		if (animating)
-		{
-			[self stopAnimation];
-			[self startAnimation];
-		}
-	}
+        if (animating)
+        {
+            [self stopAnimation];
+            [self startAnimation];
+        }
+    }
 }
 
 - (void)startAnimation {
-	if (!animating)
-	{
-		if (displayLinkSupported)
-		{
-			// CADisplayLink is API new to iPhone SDK 3.1. Compiling against earlier versions will result in a warning, but can be dismissed
-			// if the system version runtime check for CADisplayLink exists in -initWithCoder:. The runtime check ensures this code will
-			// not be called in system versions earlier than 3.1.
+    if (!animating)
+    {
+        if (displayLinkSupported)
+        {
+            // CADisplayLink is API new to iPhone SDK 3.1. Compiling against earlier versions will result in a warning, but can be dismissed
+            // if the system version runtime check for CADisplayLink exists in -initWithCoder:. The runtime check ensures this code will
+            // not be called in system versions earlier than 3.1.
 
-			displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(gameLoop)];
-			[displayLink setFrameInterval:animationFrameInterval];
-			[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-		}
-		else
-			animationTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)((1.0 / 60.0) * animationFrameInterval)
+            displayLink = [NSClassFromString(@"CADisplayLink") displayLinkWithTarget:self selector:@selector(gameLoop)];
+            [displayLink setFrameInterval:animationFrameInterval];
+            [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        }
+        else
+            animationTimer = [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)((1.0 / 60.0) * animationFrameInterval)
                                                               target:self selector:@selector(gameLoop) userInfo:nil repeats:TRUE];
 
-		animating = TRUE;
+        animating = TRUE;
 
-		// Setup the lastTime ivar
+        // Setup the lastTime ivar
         lastTime = CFAbsoluteTimeGetCurrent();
-	}
+    }
 }
 
 - (void)stopAnimation {
-	if (animating)
-	{
-		if (displayLinkSupported)
-		{
-			[displayLink invalidate];
-			displayLink = nil;
-		}
-		else
-		{
-			[animationTimer invalidate];
-			animationTimer = nil;
-		}
+    if (animating)
+    {
+        if (displayLinkSupported)
+        {
+            [displayLink invalidate];
+            displayLink = nil;
+        }
+        else
+        {
+            [animationTimer invalidate];
+            animationTimer = nil;
+        }
 
-		animating = FALSE;
-	}
+        animating = FALSE;
+    }
 }
 
 #pragma mark -
@@ -164,7 +164,7 @@ BOOL isGameCenterAvailable() {
 
     [viewController customInit];
 
-	//now set our view as visible
+    //now set our view as visible
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
 

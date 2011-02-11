@@ -12,16 +12,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(TextureManager);
 - (void)dealloc {
 
     // Release the cachedTextures dictionary.
-	[cachedTextures release];
-	[super dealloc];
+    [cachedTextures release];
+    [super dealloc];
 }
 
 
 - (id)init {
-	// Initialize a dictionary with an initial size to allocate some memory, but it will
+    // Initialize a dictionary with an initial size to allocate some memory, but it will
     // increase in size as necessary as it is mutable.
-	cachedTextures = [[NSMutableDictionary alloc] init];
-	return self;
+    cachedTextures = [[NSMutableDictionary alloc] init];
+    return self;
 }
 
 - (Texture2D*)textureWithFileName:(NSString*)aName filter:(GLenum)aFilter {
@@ -29,20 +29,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(TextureManager);
     // Try to get a texture from cachedTextures with the supplied key.
     Texture2D *cachedTexture;
 
-	if(cachedTexture = [cachedTextures objectForKey:aName]) {
-		return cachedTexture;
-	}
+    if(cachedTexture = [cachedTextures objectForKey:aName]) {
+        return cachedTexture;
+    }
 
-	// We are using imageWithContentsOfFile rather than imageNamed, as imageNamed caches the image in the device.
-	// This can lead to memory issue as we do not have direct control over when it would be released.  Not using
-	// imageNamed means that it is not cached by the OS and we have control over when it is released.
-	NSString *filename = [aName stringByDeletingPathExtension];
-	NSString *filetype = [aName pathExtension];
-	NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:filetype];
-	cachedTexture = [[Texture2D alloc] initWithImage:[UIImage imageWithContentsOfFile:path] filter:aFilter];
-	[cachedTextures setObject:cachedTexture forKey:aName];
+    // We are using imageWithContentsOfFile rather than imageNamed, as imageNamed caches the image in the device.
+    // This can lead to memory issue as we do not have direct control over when it would be released.  Not using
+    // imageNamed means that it is not cached by the OS and we have control over when it is released.
+    NSString *filename = [aName stringByDeletingPathExtension];
+    NSString *filetype = [aName pathExtension];
+    NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:filetype];
+    cachedTexture = [[Texture2D alloc] initWithImage:[UIImage imageWithContentsOfFile:path] filter:aFilter];
+    [cachedTextures setObject:cachedTexture forKey:aName];
 
-	// Return the texture which is autoreleased as the caller is responsible for it
+    // Return the texture which is autoreleased as the caller is responsible for it
     return [cachedTexture autorelease];
 }
 

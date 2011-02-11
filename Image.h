@@ -25,40 +25,40 @@
 //
 @interface Image : NSObject {
 
-	//////////////////// Singleton Managers
-    TextureManager *textureManager;					// Reference to the texture manager
-    ImageRenderManager *sharedImageRenderManager;	// Reference to the render manager
+    //////////////////// Singleton Managers
+    TextureManager *textureManager;                 // Reference to the texture manager
+    ImageRenderManager *sharedImageRenderManager;   // Reference to the render manager
 
-	//////////////////// Image iVars
-    NSString *imageFileName;		    // Holds the name of the image file used to create this image.  This is used
-	NSString *imageFileType;			// when caching Texture2D objects.
-    Texture2D *texture;				    // Texture2D object which has been created with the image provided to create this
-										// image instance
-    CGSize fullTextureSize;			    // Width and Height of the actual texture which is ^2
-    CGSize textureSize;				    // Width and height of the texture this image is actually using
-    CGSize imageSize;				    // Width and height of the image within the the texture this instance represents
-	CGSize originalImageSize;			// Original image size used when changing the % of image rendered using the
-										// setImageWidthPercentage or setImageHeightPercentage methods
-    CGSize maxTextureSize;			    // Maximum texture width and height of the image
-    CGPoint textureOffset;			    // Offset of the image within the texture from where the image should be taken
-    float rotation;					    // Information about the scale and rotation of the image
+    //////////////////// Image iVars
+    NSString *imageFileName;            // Holds the name of the image file used to create this image.  This is used
+    NSString *imageFileType;            // when caching Texture2D objects.
+    Texture2D *texture;                 // Texture2D object which has been created with the image provided to create this
+                                        // image instance
+    CGSize fullTextureSize;             // Width and Height of the actual texture which is ^2
+    CGSize textureSize;                 // Width and height of the texture this image is actually using
+    CGSize imageSize;                   // Width and height of the image within the the texture this instance represents
+    CGSize originalImageSize;           // Original image size used when changing the % of image rendered using the
+                                        // setImageWidthPercentage or setImageHeightPercentage methods
+    CGSize maxTextureSize;              // Maximum texture width and height of the image
+    CGPoint textureOffset;              // Offset of the image within the texture from where the image should be taken
+    float rotation;                     // Information about the scale and rotation of the image
     Scale2f scale;
-    BOOL flipHorizontally;			    // Information about the scale and rotation of the image
+    BOOL flipHorizontally;              // Information about the scale and rotation of the image
     BOOL flipVertically;
-	NSUInteger IVAIndex;			    // Information about the scale and rotation of the image
-    GLuint textureName;				    // Name of the OpenGL texture used by the associated Texture2D object
-	CGPoint point;						// Point at which the image will be rendered
-    CGPoint rotationPoint;			    // Point around which the image will be rotated
-    Color4f color;					    // Color filter to be applied to the image
-	BOOL dirty;						    // Tracks if the image needs to be transformed before being rendered
-    GLenum minMagFilter;			    // Holds the min/mag option for the image
-	CGRect subImageRectangle;			// Rectangle that holds the bounds of the current image
-    CGSize textureRatio;			    // Height and width ratio of the image to the texture.  This allows us to take a pixel
-										// location within the image and convert that to texture coordinates
+    NSUInteger IVAIndex;                // Information about the scale and rotation of the image
+    GLuint textureName;                 // Name of the OpenGL texture used by the associated Texture2D object
+    CGPoint point;                      // Point at which the image will be rendered
+    CGPoint rotationPoint;              // Point around which the image will be rotated
+    Color4f color;                      // Color filter to be applied to the image
+    BOOL dirty;                         // Tracks if the image needs to be transformed before being rendered
+    GLenum minMagFilter;                // Holds the min/mag option for the image
+    CGRect subImageRectangle;           // Rectangle that holds the bounds of the current image
+    CGSize textureRatio;                // Height and width ratio of the image to the texture.  This allows us to take a pixel
+                                        // location within the image and convert that to texture coordinates
 
-	//////////////////// Render information
-	ImageDetails *imageDetails;		    // Structure to store both the original and transformed geometry, texture and color information
-    float matrix[9];				    // Array used to store our own matrix information
+    //////////////////// Render information
+    ImageDetails *imageDetails;         // Structure to store both the original and transformed geometry, texture and color information
+    float matrix[9];                    // Array used to store our own matrix information
 
 }
 

@@ -8,7 +8,7 @@
 @class GameEngineAppDelegate;
 
 @interface MainMenuView : GameState {
-	IBOutlet UIView* subview;
+    IBOutlet UIView* subview;
     GameEngineAppDelegate *appDelegate;
     IBOutlet UIButton* leaderboardButton;
 }

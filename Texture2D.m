@@ -5,7 +5,7 @@
 #import "Texture2D.h"
 #import "Global.h"
 
-#define kMaxTextureSize	1024
+#define kMaxTextureSize 1024
 
 @implementation Texture2D
 
@@ -24,11 +24,11 @@
 #ifdef GAMEENGINE_DEBUG
     NSLog(@"INFO - Texture2D: Deallocating");
 #endif
-	// If this instance is deallocated then delete the texture from OpenGL
-	if(name)
-	 glDeleteTextures(1, &name);
+    // If this instance is deallocated then delete the texture from OpenGL
+    if(name)
+     glDeleteTextures(1, &name);
 
-	[super dealloc];
+    [super dealloc];
 }
 
 - (id)initWithImage:(UIImage*)aImage filter:(GLenum)aFilter {
@@ -43,9 +43,9 @@
         image = [aImage CGImage];
 
         // Check to make sure we have been able to get the CGImage from the Image passed in.  If not then
-		// raise an error.  We don't want the application to continue as a missing image could create unexpected
-		// results
-		NSAssert(image, @"ERROR - Texture2D: The supplied UIImage was null.");
+        // raise an error.  We don't want the application to continue as a missing image could create unexpected
+        // results
+        NSAssert(image, @"ERROR - Texture2D: The supplied UIImage was null.");
 
         // Check to see if the image contains alpha information by reading the alpha info from the image
         // supplied.  Set hasAlpha accordingly
@@ -89,7 +89,7 @@
             height = pot;
         }
 
-		// Load up Identity matrix for the affine transform
+        // Load up Identity matrix for the affine transform
         CGAffineTransform transform = CGAffineTransformIdentity;
 
         // Now that we have created a width and height which is power of 2 and will contain our image
@@ -156,18 +156,18 @@
         // the OpenGL texture.
         CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image), CGImageGetHeight(image)), image);
 
-		// If the pixel format is RGB565 then sort out the image data.
-		if(pixelFormat == kTexture2DPixelFormat_RGB565) {
-			void* tempData = malloc(height * width * 2);
-			unsigned int *inPixel32 = (unsigned int*)data;
-			unsigned short *outPixel16 = (unsigned short*)tempData;
-			for(int i = 0; i < width * height; ++i, ++inPixel32)
-				*outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) |
-					((((*inPixel32 >> 8) & 0xFF) >> 2) << 5) |
-					((((*inPixel32 >> 16) & 0xFF) >> 3) << 0);
-			free(data);
-			data = tempData;
-		}
+        // If the pixel format is RGB565 then sort out the image data.
+        if(pixelFormat == kTexture2DPixelFormat_RGB565) {
+            void* tempData = malloc(height * width * 2);
+            unsigned int *inPixel32 = (unsigned int*)data;
+            unsigned short *outPixel16 = (unsigned short*)tempData;
+            for(int i = 0; i < width * height; ++i, ++inPixel32)
+                *outPixel16++ = ((((*inPixel32 >> 0) & 0xFF) >> 3) << 11) |
+                    ((((*inPixel32 >> 8) & 0xFF) >> 2) << 5) |
+                    ((((*inPixel32 >> 16) & 0xFF) >> 3) << 0);
+            free(data);
+            data = tempData;
+        }
 
         // Generate a new OpenGL texture name and bind to it
         glGenTextures(1, &name);
@@ -214,8 +214,8 @@
         free(data);
     }
 
-	// Return self with aurorelease.  The receiver is responsbile for retaining this instance
-	return self;
+    // Return self with aurorelease.  The receiver is responsbile for retaining this instance
+    return self;
 }
 
 @end

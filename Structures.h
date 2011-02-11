@@ -10,16 +10,16 @@
 
 // Structure that defines the elements which make up a color
 typedef struct {
-	GLfloat red;
-	GLfloat green;
-	GLfloat blue;
-	GLfloat alpha;
+    GLfloat red;
+    GLfloat green;
+    GLfloat blue;
+    GLfloat alpha;
 } Color4f;
 
 // Structure that defines a vector using x and y
 typedef struct {
-	GLfloat x;
-	GLfloat y;
+    GLfloat x;
+    GLfloat y;
 } Vector2f;
 
 // Structure to hold the x and y scale
@@ -75,30 +75,30 @@ typedef struct {
 
 // Stores the tile coordinates for each vertex in a bounding rectangle
 typedef struct {
-	float x1, y1;
-	float x2, y2;
-	float x3, y3;
-	float x4, y4;
+    float x1, y1;
+    float x2, y2;
+    float x3, y3;
+    float x4, y4;
 } BoundingBoxTileQuad;
 
 // Stores portal objects found in the tilemap
 typedef struct {
-	NSString *name;
-	NSString *type;
-	float x;
-	float y;
-	float dest_x;
-	float dest_y;
+    NSString *name;
+    NSString *type;
+    float x;
+    float y;
+    float dest_x;
+    float dest_y;
 } PortalObject;
 
 typedef struct {
-	int x;
-	int y;
+    int x;
+    int y;
 } Position;
 
 // Structure used to hold details of a circle
 typedef struct {
-	float x;
-	float y;
-	float radius;
+    float x;
+    float y;
+    float radius;
 } Circle;

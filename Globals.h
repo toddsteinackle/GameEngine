@@ -12,12 +12,12 @@
 
 // Scene States
 enum SceneState {
-	SceneState_TransitionIn,
+    SceneState_TransitionIn,
 };
 
 // Entity states
 enum EntityState {
-	EntityState_Idle,
+    EntityState_Idle,
 };
 
 #pragma mark -

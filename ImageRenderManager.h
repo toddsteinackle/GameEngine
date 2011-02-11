@@ -28,21 +28,21 @@
 @interface ImageRenderManager : NSObject {
 
     ///////////////////// Render
-    TexturedColoredVertex *iva;						// Interleaved Vertex Array that holds the vertex, texture and color information needed
-													// to render
-    GLushort *ivaIndices;							// Array of indices into the interleaved vertex array.  Used within glDrawElements to
-													// define which elements within the IVA should be rendered
-    NSUInteger textureIndices[kMax_Textures][kMax_Images];		// Array which holds the textures to be rendered.  The first dimension holds the texture
-																// name and the second dimension holds the IVAIndex of an image which should be rendered
-																// when that texture is being processed
-    NSUInteger texturesToRender[kMax_Textures];	    // Array to store a list of the textures which need to be rendered.  Each time an image
-													// is added to the render queue with a texture which has not been added to the queue before
-													// the new texture name is added to this array.  This array then drives the textures which
-													// are processed during a render
+    TexturedColoredVertex *iva;                     // Interleaved Vertex Array that holds the vertex, texture and color information needed
+                                                    // to render
+    GLushort *ivaIndices;                           // Array of indices into the interleaved vertex array.  Used within glDrawElements to
+                                                    // define which elements within the IVA should be rendered
+    NSUInteger textureIndices[kMax_Textures][kMax_Images];      // Array which holds the textures to be rendered.  The first dimension holds the texture
+                                                                // name and the second dimension holds the IVAIndex of an image which should be rendered
+                                                                // when that texture is being processed
+    NSUInteger texturesToRender[kMax_Textures];     // Array to store a list of the textures which need to be rendered.  Each time an image
+                                                    // is added to the render queue with a texture which has not been added to the queue before
+                                                    // the new texture name is added to this array.  This array then drives the textures which
+                                                    // are processed during a render
     NSUInteger imageCountForTexture[kMax_Images];   // Array to store the number of images within each texture to be rendered.  The texture
-													// name is used for the index
-    NSUInteger renderTextureCount;					// Number textures to render
-    GLushort ivaIndex;							    // Current count of quads defined within the RenderManagers IVA
+                                                    // name is used for the index
+    NSUInteger renderTextureCount;                  // Number textures to render
+    GLushort ivaIndex;                              // Current count of quads defined within the RenderManagers IVA
 
 }
 

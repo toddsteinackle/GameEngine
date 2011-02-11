@@ -27,10 +27,10 @@
 SYNTHESIZE_SINGLETON_FOR_CLASS(ImageRenderManager);
 
 - (void)dealloc {
-	if (iva)
-		free(iva);
-	if (ivaIndices)
-		free(ivaIndices);
+    if (iva)
+        free(iva);
+    if (ivaIndices)
+        free(ivaIndices);
     [super dealloc];
 }
 
@@ -53,33 +53,33 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageRenderManager);
         // Initialize the texture to render count
         renderTextureCount = 0;
 
-		// Initialize the contents of the imageCountForTexture array. We want to make sure that
-		// the memory contents for this array are clean before we get started.
-		memset(imageCountForTexture, 0, kMax_Images);
+        // Initialize the contents of the imageCountForTexture array. We want to make sure that
+        // the memory contents for this array are clean before we get started.
+        memset(imageCountForTexture, 0, kMax_Images);
      }
     return self;
 }
 
 - (void)addImageDetailsToRenderQueue:(ImageDetails*)aImageDetails {
 
-	// Copy the imageDetails to the render managers IVA
-	[self copyImageDetails:aImageDetails];
+    // Copy the imageDetails to the render managers IVA
+    [self copyImageDetails:aImageDetails];
 
-	// Add the texture used for this image to the list of textures to be rendered
-	[self addToTextureList:aImageDetails->textureName];
+    // Add the texture used for this image to the list of textures to be rendered
+    [self addToTextureList:aImageDetails->textureName];
 
-	// As we have added an images details to the render queue we need to increment the iva index
-	ivaIndex++;
+    // As we have added an images details to the render queue we need to increment the iva index
+    ivaIndex++;
 }
 
 - (void)addTexturedColoredQuadToRenderQueue:(TexturedColoredQuad*)aTCQ texture:(uint)aTexture {
-	memcpy((TexturedColoredQuad*)iva + ivaIndex, aTCQ,sizeof(TexturedColoredQuad));
+    memcpy((TexturedColoredQuad*)iva + ivaIndex, aTCQ,sizeof(TexturedColoredQuad));
 
-	// Add the texture used for this image to the list of textures to be rendered
-	[self addToTextureList:aTexture];
+    // Add the texture used for this image to the list of textures to be rendered
+    [self addToTextureList:aTexture];
 
-	// As we have added a TexturedColoredQuad to the render queue we need to increment the iva index
-	ivaIndex++;
+    // As we have added a TexturedColoredQuad to the render queue we need to increment the iva index
+    ivaIndex++;
 }
 
 - (void)renderImages {
@@ -123,8 +123,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageRenderManager);
     // Reset the number of textures which need to be rendered
     renderTextureCount = 0;
 
-	// Reset the ivaIndex so that we start to load the next set of images from the start of the IVA.
-	ivaIndex = 0;
+    // Reset the ivaIndex so that we start to load the next set of images from the start of the IVA.
+    ivaIndex = 0;
 }
 
 @end
@@ -137,26 +137,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageRenderManager);
 - (void)copyImageDetails:(ImageDetails*)aImageDetails {
 
     // Check to make sure that we have not exceeded the maximum size of the render queue.  If the queue size
-	// is exceeded then render the images that are currently in the render managers queue.  This resets the
-	// queue and allows the image to be added to the render managers then empty queue.
+    // is exceeded then render the images that are currently in the render managers queue.  This resets the
+    // queue and allows the image to be added to the render managers then empty queue.
     if(ivaIndex + 1 > kMax_Images) {
         NSLog(@"ERROR - RenderManager: Render queue size exceeded.  Consider increasing the default size. %d", ivaIndex + 1);
-		[self renderImages];
+        [self renderImages];
     }
 
     // Point the texturedColoredQuadIVA to the current location in the render managers IVA queue
     aImageDetails->texturedColoredQuadIVA = (TexturedColoredQuad*)iva + ivaIndex;
 
     // Copy the images base texturedColoredQuad into the assigned IVA index.  This is necessary to make sure
-	// the texture and color informaiton is loaded into the IVA.  The geometry from the image is loaded
-	// when the image is transformed within the Image render method.
+    // the texture and color informaiton is loaded into the IVA.  The geometry from the image is loaded
+    // when the image is transformed within the Image render method.
     memcpy(aImageDetails->texturedColoredQuadIVA, aImageDetails->texturedColoredQuad,sizeof(TexturedColoredQuad));
 }
 
 
 - (void)addToTextureList:(uint)aTextureName {
 
-	// Check to see if the texture for this image has already been added to the queue
+    // Check to see if the texture for this image has already been added to the queue
     BOOL textureFound = NO;
     for(int index=0; index<renderTextureCount; index++) {
         if(texturesToRender[index] == aTextureName) {
@@ -165,7 +165,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageRenderManager);
         }
     }
 
-	if(!textureFound)
+    if(!textureFound)
         // This is the first time this texture has been placed on the queue, so add this texture to the
         // texturesToRender array
         texturesToRender[renderTextureCount++] = aTextureName;
@@ -173,8 +173,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageRenderManager);
     // Add this new images ivaIndex to the textureIndices array
     textureIndices[aTextureName][imageCountForTexture[aTextureName]] = ivaIndex;
 
-	// Up the image count for the texture we have just processed
-	imageCountForTexture[aTextureName] += 1;
+    // Up the image count for the texture we have just processed
+    imageCountForTexture[aTextureName] += 1;
 }
 
 @end
