@@ -29,6 +29,7 @@
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         // Initialization code
+        self.userInteractionEnabled = true;
         // Get the layer
         CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
 
@@ -52,5 +53,8 @@
     [renderer release];
     [super dealloc];
 }
+
+- (void)updateSceneWithDelta:(float)aDelta { }
+- (void)renderScene { }
 
 @end

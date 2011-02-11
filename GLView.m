@@ -17,7 +17,7 @@
 
 @synthesize viewController;
 
--(GLView*) initWithFrame:(CGRect)frame {
+-(GLView*)initWithFrame:(CGRect)frame {
 
     appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
 
@@ -152,7 +152,7 @@
     return self;
 }
 
--(void) renderScene {
+-(void)renderScene {
 
     switch (sceneState) {
         case 1:
@@ -193,7 +193,7 @@
     }
 }
 
-- (void) updateSceneWithDelta:(float)aDelta {
+- (void)updateSceneWithDelta:(float)aDelta {
     float xScale, yScale;
     switch (sceneState) {
         case 1:
@@ -239,7 +239,7 @@
     }
 }
 
--(void) touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+-(void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     UITouch* touch = [touches anyObject];
     CGPoint loc = [touch locationInView:self];
     NSLog(@"x -- %f y -- %f", loc.x, loc.y);

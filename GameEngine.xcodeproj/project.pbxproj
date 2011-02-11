@@ -25,7 +25,6 @@
 		5F50DDB913019C77002F29B2 /* PauseMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F50DDB713019C77002F29B2 /* PauseMenuViewController.m */; };
 		5F50DDBA13019C77002F29B2 /* PauseMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F50DDB813019C77002F29B2 /* PauseMenuViewController.xib */; };
 		5F5715001300E07400D31399 /* SettingsMenuViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */; };
-		5F5A9EC612F5DEB9006A2A2C /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9EC512F5DEB9006A2A2C /* GameState.m */; };
 		5F5A9F2A12F5ECD7006A2A2C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5A9F2912F5ECD7006A2A2C /* QuartzCore.framework */; };
 		5F5A9FA212F5FF6B006A2A2C /* ES1Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F5A9FA012F5FF6B006A2A2C /* ES1Renderer.m */; };
 		5F5A9FB512F60090006A2A2C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5A9FB412F60090006A2A2C /* OpenGLES.framework */; };
@@ -94,8 +93,6 @@
 		5F50DDB813019C77002F29B2 /* PauseMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PauseMenuViewController.xib; sourceTree = "<group>"; };
 		5F5714FF1300E07400D31399 /* SettingsMenuViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "SettingsMenuViewController-iPad.xib"; sourceTree = "<group>"; };
 		5F5715231300E44500D31399 /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
-		5F5A9EC412F5DEB9006A2A2C /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
-		5F5A9EC512F5DEB9006A2A2C /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
 		5F5A9F2912F5ECD7006A2A2C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5F5A9F9F12F5FF6B006A2A2C /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
 		5F5A9FA012F5FF6B006A2A2C /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
@@ -203,7 +200,7 @@
 				5F3D40AB12FF416C00358CE7 /* GLView.m */,
 				5FA9B91E12FC765500306D2D /* TestData */,
 				5F3D40B712FF423700358CE7 /* Menus */,
-				5F3D40B212FF41E100358CE7 /* Framework */,
+				5F3D40B212FF41E100358CE7 /* GLES */,
 				5FA9B91D12FC760F00306D2D /* GameEngine */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -254,15 +251,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5F3D40B212FF41E100358CE7 /* Framework */ = {
+		5F3D40B212FF41E100358CE7 /* GLES */ = {
 			isa = PBXGroup;
 			children = (
 				5F3D40A512FF416C00358CE7 /* GLESGameState.h */,
 				5F3D40A612FF416C00358CE7 /* GLESGameState.m */,
-				5F5A9EC412F5DEB9006A2A2C /* GameState.h */,
-				5F5A9EC512F5DEB9006A2A2C /* GameState.m */,
 			);
-			name = Framework;
+			name = GLES;
 			sourceTree = "<group>";
 		};
 		5F3D40B712FF423700358CE7 /* Menus */ = {
@@ -425,7 +420,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				5F5A9EC612F5DEB9006A2A2C /* GameState.m in Sources */,
 				5F5A9FA212F5FF6B006A2A2C /* ES1Renderer.m in Sources */,
 				5F5A9FCC12F6014C006A2A2C /* Image.m in Sources */,
 				5F5A9FCD12F6014C006A2A2C /* ImageRenderManager.m in Sources */,

@@ -72,18 +72,18 @@ BOOL isGameCenterAvailable() {
         updateIterations -= UPDATE_INTERVAL;
 
         // Update the game logic passing in the fixed update interval as the delta
-        [((GameState*)currentViewController.view) updateSceneWithDelta:UPDATE_INTERVAL];
+        [((GLESGameState*)currentViewController.view) updateSceneWithDelta:UPDATE_INTERVAL];
     }
 
     cyclesLeftOver = updateIterations;
     lastFrameTime = currentTime;
 
     // Render the scene
-    [((GameState*)currentViewController.view) drawView:nil];
+    [((GLESGameState*)currentViewController.view) drawView:nil];
 }
 
 - (void) renderCurrentScene {
-    [((GameState*)currentViewController.view) renderScene];
+    [((GLESGameState*)currentViewController.view) renderScene];
 }
 
 - (NSInteger)animationFrameInterval {

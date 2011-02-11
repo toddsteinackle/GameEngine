@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameState.h"
 #import "ESRenderer.h"
 
-@interface GLESGameState : GameState {
+@interface GLESGameState : UIView {
 
 @private
     id <ESRenderer> renderer;
@@ -18,5 +17,9 @@
 }
 
 - (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame;
+- (void)renderScene;
+- (void)updateSceneWithDelta:(float)aDelta;
+- (void)drawView:(id)sender;
 
 @end
