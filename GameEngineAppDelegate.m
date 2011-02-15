@@ -215,6 +215,7 @@ BOOL isGameCenterAvailable() {
      OpenGL ES frame rates. Games should use this method to pause the game.
      */
     [self stopAnimation];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 
@@ -246,6 +247,7 @@ BOOL isGameCenterAvailable() {
      */
     if ([currentViewController.view isKindOfClass:[GLESGameState class]]) {
         [self startAnimation];
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     }
 }
 
@@ -256,6 +258,7 @@ BOOL isGameCenterAvailable() {
      See also applicationDidEnterBackground:.
      */
     [self stopAnimation];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 #pragma mark -

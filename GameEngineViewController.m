@@ -42,6 +42,7 @@
     appDelegate.currentViewController = glViewController;
     [appDelegate startAnimation];
     [self presentModalViewController:glViewController animated:YES];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
 - (void)dismissGLView {

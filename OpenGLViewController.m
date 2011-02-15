@@ -42,12 +42,14 @@
     [appDelegate stopAnimation];
     [self presentModalViewController:pauseMenu animated:YES];
     appDelegate.currentViewController = pauseMenu;
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 }
 
 - (void)dismissPauseView {
     [self dismissModalViewControllerAnimated:YES];
     appDelegate.currentViewController = self;
     [appDelegate startAnimation];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
 - (void)quitGame {
