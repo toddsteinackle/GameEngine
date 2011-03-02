@@ -117,7 +117,7 @@
 
 - (void)renderStringJustifiedInFrame:(CGRect)aRect justification:(int)aJustification text:(NSString*)aText {
 
-    CGPoint point;
+    CGPoint point = CGPointMake(0.0, 0.0);
 
     // Calculate the width and height in pixels of the text
     int textWidth = [self getWidthForString:aText];
@@ -233,7 +233,7 @@
     NSString *line;
 
     // Loop through all the lines in the lines array processing each one
-    while(line = [nse nextObject]) {
+    while((line = [nse nextObject])) {
         // Check to see if the start of the line is something we are interested in
         if([line hasPrefix:@"common"]) {
             [self parseCommon:line];

@@ -41,7 +41,7 @@
         sharedSoundManager = [SoundManager sharedSoundManager];
         appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
         pixelLocation.x = aLocation.x;
-        pixelLocation.y - aLocation.y;
+        pixelLocation.y = aLocation.y;
     }
     return self;
 }

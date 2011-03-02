@@ -22,7 +22,7 @@
     appDelegate = (GameEngineAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     sceneState = 3;
-    if (self = [super initWithFrame:frame]){
+    if ((self = [super initWithFrame:frame])) {
         //do initialization here.
         switch (sceneState) {
             case 1:
@@ -125,10 +125,6 @@
                 // Set the state and type of animation
                 playerAnim.state = kAnimationState_Running;
                 playerAnim.type = kAnimationType_Repeating;
-
-                // Release the spritesheets we created as we no longer need them and don't want to leak memory
-                [playerSprites release];
-                [ghostSprites release];
 
                 ////////////////////////////////////////////////////////////////////////
                 // Bitmapt Font

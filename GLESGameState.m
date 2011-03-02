@@ -27,7 +27,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
         // Initialization code
         self.userInteractionEnabled = true;
         // Get the layer
